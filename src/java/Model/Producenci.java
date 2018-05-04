@@ -70,6 +70,17 @@ public class Producenci implements Serializable {
         this.idProducent = idProducent;
         this.nazwa = nazwa;
     }
+    
+    public Producenci(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Producenci(String nazwa, String opis, Date rokPow, Date rokZak) {
+        this.nazwa = nazwa;
+        this.opis = opis;
+        this.rokpow = rokPow;
+        this.rokzak = rokZak;
+    }
 
     public Integer getIdProducent() {
         return idProducent;

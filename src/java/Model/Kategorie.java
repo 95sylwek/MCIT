@@ -59,6 +59,10 @@ public class Kategorie implements Serializable {
         this.idKategoria = idKategoria;
         this.nazwa = nazwa;
     }
+    
+    public Kategorie(String nazwa) {
+        this.nazwa = nazwa;
+    }
 
     public Integer getIdKategoria() {
         return idKategoria;

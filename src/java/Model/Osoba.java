@@ -73,6 +73,32 @@ public class Osoba implements Serializable {
         this.email = email;
         this.haslo = haslo;
     }
+    
+    public Osoba(String imie, String nazwisko, String haslo, String email) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.haslo = haslo;
+        this.email = email;
+    }
+    
+    public Osoba(String imie, String nazwisko, String adres, String telefon, String haslo, String email) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.adres = adres;
+        this.telefon = telefon;
+        this.haslo = haslo;
+        this.email = email;        
+    }
+
+    public Osoba(String imie, String nazwisko, String adres, String telefon, String haslo, String email, Stanowisko stanowisko) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.adres = adres;
+        this.telefon = telefon;
+        this.haslo = haslo;
+        this.email = email;
+        this.stanowisko = stanowisko;
+    }
 
     public Integer getIdOsoba() {
         return idOsoba;

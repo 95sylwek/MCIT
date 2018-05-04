@@ -35,8 +35,8 @@ public class Stanowisko implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_stanowisko")
     private Integer idStanowisko;
     @Basic(optional = false)
@@ -50,6 +50,10 @@ public class Stanowisko implements Serializable {
 
     public Stanowisko(Integer idStanowisko) {
         this.idStanowisko = idStanowisko;
+    }
+    
+    public Stanowisko(String nazwa) {
+        this.nazwa = nazwa;
     }
 
     public Stanowisko(Integer idStanowisko, String nazwa) {

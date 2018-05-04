@@ -71,6 +71,22 @@ public class Loklaizacja implements Serializable {
         this.nazwa = nazwa;
     }
 
+    public Loklaizacja(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Loklaizacja(String nazwa, String opis) {
+        this.nazwa = nazwa;
+        this.opis = opis;
+    }
+
+    public Loklaizacja(String nazwa, String opis, Date dataOd, Date dataDo) {
+        this.nazwa = nazwa;
+        this.opis = opis;
+        this.dataod = dataOd;
+        this.datado = dataDo;
+    }
+
     public Integer getIdLokalizacja() {
         return idLokalizacja;
     }
@@ -144,5 +160,5 @@ public class Loklaizacja implements Serializable {
     public String toString() {
         return "Model.Loklaizacja[ idLokalizacja=" + idLokalizacja + " ]";
     }
-    
+
 }
