@@ -5,9 +5,13 @@
  */
 package Kontroler;
 
+import java.security.MessageDigest;
+import java.util.Formatter;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,7 +30,8 @@ public class Osoba {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, haslo, email);
+        String password = encryptPassword(haslo);
+        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, password, email);
 
         em.persist(osoba);
         em.getTransaction().commit();
@@ -38,7 +43,8 @@ public class Osoba {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, adres, telefon, haslo, email);
+        String password = encryptPassword(haslo);
+        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, adres, telefon, password, email);
 
         em.persist(osoba);
         em.getTransaction().commit();
@@ -50,7 +56,8 @@ public class Osoba {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, adres, telefon, haslo, email, stanowisko);
+        String password = encryptPassword(haslo);
+        Model.Osoba osoba = new Model.Osoba(imie, nazwisko, adres, telefon, password, email, stanowisko);
 
         em.persist(osoba);
         em.getTransaction().commit();
@@ -177,7 +184,7 @@ public class Osoba {
         em.close();
     }
 
-    public String getHaslo(int id) throws Exception {
+    private String getHaslo(int id) throws Exception {
         String haslo = "";
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -187,7 +194,6 @@ public class Osoba {
         Model.Osoba osoba = em.find(Model.Osoba.class, id);
         haslo = osoba.getHaslo();
 
-        em.persist(osoba);
         em.getTransaction().commit();
         em.close();
 
@@ -199,8 +205,9 @@ public class Osoba {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
+        String password = encryptPassword(haslo);
         Model.Osoba osoba = em.find(Model.Osoba.class, id);
-        osoba.setHaslo(haslo);
+        osoba.setHaslo(password);
 
         em.persist(osoba);
         em.getTransaction().commit();
@@ -236,8 +243,85 @@ public class Osoba {
         em.getTransaction().commit();
         em.close();
     }
-    
-    public static void main(String[] args) {
+
+    private static String encryptPassword(String password) {
+        String sha1 = "";
+        try {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            sha1 = byteToHex(crypt.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return sha1;
+    }
+
+    private static String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
+    }
+
+    public Model.Osoba checkUser(String email, String password) throws Exception {
+        Model.Osoba osoba = null;
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Query q = em.createQuery("SELECT o FROM Osoba WHERE o.email = '" + email + "'");
+
+        if (q.getSingleResult() != null) {
+
+            osoba = (Model.Osoba) q.getSingleResult();
+            if (!osoba.getHaslo().equals(password)) {
+                osoba = null;
+            }
+        } else {
+            osoba = null;
+        }
+
+        em.getTransaction().commit();
+        em.close();
+
+        return osoba;
+    }
+
+    public List<Model.Osoba> getOsoby() throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Query q = em.createQuery("SELECT o FROM Osoba o");
+        List osoby = (List) q.getResultList();
+
+        em.close();
         
+        return osoby;
+    }
+    
+    public Model.Osoba getOsoba(int id) throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Model.Osoba osoba = em.find(Model.Osoba.class, id);
+
+        em.close();
+
+        return osoba;
+    }
+
+    public static void main(String[] args) {
+        String password = "CosTam12";
+        try {
+            Osoba osoba = new Osoba("admin", "admin", "admin", "admin");
+        } catch (Exception e) {
+        }
+
     }
 }

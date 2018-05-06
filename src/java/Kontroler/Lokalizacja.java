@@ -7,9 +7,11 @@ package Kontroler;
 
 import Model.Loklaizacja;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,9 +20,9 @@ import javax.persistence.Persistence;
 public class Lokalizacja {
 
     private static final String DbName = "MCITPU";
-    
-    public Lokalizacja(){
-        
+
+    public Lokalizacja() {
+
     }
 
     public Lokalizacja(String name) throws Exception {
@@ -28,7 +30,7 @@ public class Lokalizacja {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Loklaizacja lokalizacja =new Loklaizacja(name);
+        Model.Loklaizacja lokalizacja = new Loklaizacja(name);
         em.persist(lokalizacja);
 
         em.persist(lokalizacja);
@@ -177,8 +179,31 @@ public class Lokalizacja {
         em.getTransaction().commit();
         em.close();
     }
-    
+
+    public List<Model.Loklaizacja> getLoklaizacje() throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Query q = em.createQuery("SELECT l FROM Lokalizacja l");
+        List lokalizacje = (List) q.getResultList();
+
+        em.close();
+
+        return lokalizacje;
+    }
+
+    public Model.Loklaizacja getLoklaizacja(int id) throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+
+        em.close();
+
+        return lokalizacja;
+    }
+
     public static void main(String[] args) {
-        
+
     }
 }

@@ -6,9 +6,11 @@
 package Kontroler;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -172,6 +174,29 @@ public class Eksponat {
         em.persist(eksponat);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public List<Model.Eksponaty> getEksponaty() throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Query q = em.createQuery("SELECT e FROM Eksponat e");
+        List eksponaty = (List) q.getResultList();
+
+        em.close();
+
+        return eksponaty;
+    }
+
+    public Model.Eksponaty getEksponat(int id) throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+
+        Model.Eksponaty eksponat = em.find(Model.Eksponaty.class, id);
+
+        em.close();
+        
+        return eksponat;
     }
 
     public static void main(String[] args) {
