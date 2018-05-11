@@ -270,15 +270,16 @@ public class Osoba {
 
     public Model.Osoba checkUser(String email, String password) throws Exception {
         Model.Osoba osoba = null;
+        password = encryptPassword(password);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Query q = em.createQuery("SELECT o FROM Osoba WHERE o.email = '" + email + "'");
+        Query q = em.createQuery("SELECT o FROM Osoba WHERE email = '" + email + "'");
 
         if (q.getSingleResult() != null) {
-
+            
             osoba = (Model.Osoba) q.getSingleResult();
             if (!osoba.getHaslo().equals(password)) {
                 osoba = null;
@@ -286,6 +287,7 @@ public class Osoba {
         } else {
             osoba = null;
         }
+        System.out.print("dziala");
 
         em.getTransaction().commit();
         em.close();
@@ -319,7 +321,10 @@ public class Osoba {
     public static void main(String[] args) {
         String password = "CosTam12";
         try {
-            Osoba osoba = new Osoba("admin", "admin", "admin", "admin");
+            Osoba osoba = new Osoba();
+            osoba.checkUser("admin@admin.pl", "admin");
+            
+            
         } catch (Exception e) {
         }
 

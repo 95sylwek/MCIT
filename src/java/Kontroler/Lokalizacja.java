@@ -184,8 +184,8 @@ public class Lokalizacja {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
-        Query q = em.createQuery("SELECT l FROM Lokalizacja l");
-        List lokalizacje = (List) q.getResultList();
+        Query q = em.createQuery("SELECT l FROM Loklaizacja l");
+        List<Model.Loklaizacja> lokalizacje = (List) q.getResultList();
 
         em.close();
 
@@ -204,6 +204,13 @@ public class Lokalizacja {
     }
 
     public static void main(String[] args) {
-
+        try{ 
+                   Lokalizacja lokalizacja =new Lokalizacja ();
+                   for (Model.Loklaizacja cos : lokalizacja.getLoklaizacje()){
+                       System.out.print(cos.getNazwa());
+                   }
+        }catch(Exception e){
+            
+                   }
     }
 }

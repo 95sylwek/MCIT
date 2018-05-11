@@ -69,7 +69,7 @@ public class Kategorie {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
-        Query q = em.createQuery("SELECT k FROM Kategoria k");
+        Query q = em.createQuery("SELECT k FROM Kategorie k");
         List kategorie = (List) q.getResultList();
 
         em.close();
