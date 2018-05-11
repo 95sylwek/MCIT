@@ -29,7 +29,7 @@ public class Producenci {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Producent poroducent = new Model.Producent(name);
+        Model.Producenci poroducent = new Model.Producenci(name);
 
         em.persist(poroducent);
         em.getTransaction().commit();
