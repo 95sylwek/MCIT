@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="Kontroler.Logowania"%>
+<%
+    if ((session.getAttribute("id") == null) || (session.getAttribute("id") == "0")) {
+        response.sendRedirect("index.jsp");
+    } else {
+%>
 <html lang="en">
 
 
@@ -32,7 +38,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">MHKI</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.jsp">MHKI</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
@@ -50,7 +56,9 @@
                             <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="index.jsp">Wyloguj</a>  
+                  <form action="Wyloguj" method="post">
+                <button type="submit" formaction="Wyloguj" class="btn btn-primary"  data-target=".bd-example-modal-sm">Wyloguj</button>
+                </form>
                         </li>
 
 
@@ -123,3 +131,4 @@
     </body>
 
 </html>
+<%}%>

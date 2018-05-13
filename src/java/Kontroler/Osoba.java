@@ -276,7 +276,7 @@ public class Osoba {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Query q = em.createQuery("SELECT o FROM Osoba WHERE email = '" + email + "'");
+        Query q = em.createQuery("SELECT o FROM Osoba o WHERE o.email = '" + email + "'");
 
         if (q.getSingleResult() != null) {
             
@@ -320,9 +320,9 @@ public class Osoba {
 
     public static void main(String[] args) {
         String password = "CosTam12";
-        try {
-            Osoba osoba = new Osoba();
-            osoba.checkUser("admin@admin.pl", "admin");
+        try {           
+          //  Osoba osoba = new Osoba("wolontariusz", "wolontariusz", "wolontariusz", "wolontariusz@wolontariusz.pl");
+            
             
             
         } catch (Exception e) {

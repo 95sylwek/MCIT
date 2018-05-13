@@ -36,17 +36,16 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             user = osoba.checkUser(email, password);
             session.setAttribute("id", user.getIdOsoba());
             session.setAttribute("idStanowisko", user.getStanowisko().getIdStanowisko());
-            if (user.getStanowisko().getIdStanowisko() == 2) {
+            if (user.getStanowisko().getIdStanowisko() != null) {
                 response.sendRedirect("panel_admin.jsp");
-            } else {
-                response.sendRedirect("admin.jsp");
-            }
+            } 
             
         }else{
             response.sendRedirect("index.jsp");
         }
         }catch(Exception e){
-            response.sendRedirect("error.jsp");
+            System.err.println(e.getMessage());
+            response.sendRedirect("index.jsp");
         }
 
     }
