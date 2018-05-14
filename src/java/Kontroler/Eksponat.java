@@ -5,6 +5,7 @@
  */
 package Kontroler;
 
+import com.sun.media.sound.ModelAbstractChannelMixer;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -54,6 +55,18 @@ public class Eksponat {
         em.getTransaction().begin();
 
         Model.Eksponaty eksponat = new Model.Eksponaty(nazwa, opis, rokPow, rokZak, zdj);
+
+        em.persist(eksponat);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
+    public Eksponat(String nazwa, String opis, Date rokPow, Date rokZak, String zdj,Model.Kategorie kategoria, Model.Loklaizacja loklaizacja, Model.Producenci pooducent) throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Eksponaty eksponat = new Model.Eksponaty(nazwa, opis, rokPow, rokZak, zdj, kategoria, loklaizacja, pooducent);
 
         em.persist(eksponat);
         em.getTransaction().commit();
@@ -211,6 +224,6 @@ public class Eksponat {
     }
 
     public static void main(String[] args) {
-
+        
     }
 }

@@ -5,6 +5,7 @@
  */
 package Kontroler;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +21,6 @@ public class Kategorie {
     private static final String DbName = "MCITPU";
 
     public Kategorie() {
-
     }
 
     public Kategorie(String name) throws Exception {
@@ -38,7 +38,7 @@ public class Kategorie {
 
     public String getNazwa(String sid) throws Exception {
         String name = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -54,8 +54,8 @@ public class Kategorie {
     }
 
     public void setNazwa(String sid, String name) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -67,7 +67,7 @@ public class Kategorie {
         em.getTransaction().commit();
         em.close();
     }
-    
+
     public List<Model.Kategorie> getKategorie() throws Exception {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -76,24 +76,32 @@ public class Kategorie {
         List kategorie = (List) q.getResultList();
 
         em.close();
-        
+
         return kategorie;
     }
-    
+
     public Model.Kategorie getKategoria(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
         Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
 
         em.close();
-        
+
         return kategoria;
     }
 
     public static void main(String[] args) {
+        try {
+            Kategorie kategoria = new Kategorie();
+            kategoria.getKategoria("1").getEksponatyCollection();
+            for( Model.Eksponaty row :kategoria.getKategoria("1").getEksponatyCollection()){
+                System.err.println(row.getNazwa());
+            }
+        } catch (Exception e) {
+        }
 
     }
 }
