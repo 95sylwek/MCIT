@@ -99,6 +99,19 @@ public class Eksponaty implements Serializable {
         this.zdj = zdj;        
     }
 
+    public Eksponaty(String nazwa, String opis, Date rokpow, Date rokzak, String zdj, Kategorie kategoria, Loklaizacja loklaizacja, Producenci pooducent) {
+        this.nazwa = nazwa;
+        this.opis = opis;
+        this.rokpow = rokpow;
+        this.rokzak = rokzak;
+        this.zdj = zdj;
+        this.kategoria = kategoria;
+        this.loklaizacja = loklaizacja;
+        this.pooducent = pooducent;
+    }
+
+    
+
     public String getNazwa() {
         return nazwa;
     }
