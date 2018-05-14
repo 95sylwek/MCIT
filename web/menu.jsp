@@ -71,12 +71,13 @@
                   
                   
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="panel_admin.jsp"><%out.print(user.getImie(Integer.parseInt(cos2))); }%></a>  
+                            <a class="nav-link js-scroll-trigger" href="panel_admin.jsp"><%out.print(user.getImie(cos2)); %></a>  
                                
               </li>
+               <% } %>
                     </jsp:useBean>
             
-              
+             
             
             <div class="search-container">
 

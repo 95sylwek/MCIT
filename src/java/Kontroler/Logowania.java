@@ -36,6 +36,7 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             user = osoba.checkUser(email, password);
             session.setAttribute("id", user.getIdOsoba());
             session.setAttribute("idStanowisko", user.getStanowisko().getIdStanowisko());
+            System.err.println(session.getAttribute("idStanowisko"));
             if (user.getStanowisko().getIdStanowisko() != null) {
                 response.sendRedirect("panel_admin.jsp");
             } 

@@ -180,7 +180,7 @@ public class Producenci {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
-        Query q = em.createQuery("SELECT p FROM Producent p");
+        Query q = em.createQuery("SELECT p FROM Producenci p");
         List producenci = (List) q.getResultList();
 
         em.close();
