@@ -5,6 +5,8 @@
  */
 package Kontroler;
 
+import Model.Eksponaty_;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,30 +23,37 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/addExhibit")
 public class addExhibit extends HttpServlet implements java.io.Serializable {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-     
+        
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         
-        String nazwa = request.getParameter("imie");
-        Lokalizacja lokalizacja = new Lokalizacja();
-        Kategorie kategoria=new Kategorie();
-        String opis=request.getParameter("opis");
-        Date data_od = df.parse(req.getParameter("data_od"));
-
-       
-           
-
-       
-        
-        try{
+        try {
+            String nazwa = request.getParameter("nazwa");
+            Lokalizacja lokalizacja = new Lokalizacja();
+            String lok = request.getParameter("lokalizacja");
+            Kategorie kategoria = new Kategorie();
+            String kat = request.getParameter("kategoria");
+            Producenci producent = new Producenci();
+            String pro = request.getParameter("producenci");
             
-        }catch(Exception e){
-      
+            String opis = request.getParameter("opis");
+            Date data_od = df.parse(request.getParameter("rokpow"));
+            Date data_do = df.parse(request.getParameter("rokzakpro"));
+            String zdj = request.getParameter("zdj");
+            
+            
+            
+            
+            Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, zdj, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             response.sendRedirect("error.jsp");
         }
- response.sendRedirect("panel_add.jsp");
+        
+        response.sendRedirect("panel_add.jsp");
     }
     
 }
