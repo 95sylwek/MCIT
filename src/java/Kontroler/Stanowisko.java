@@ -35,7 +35,8 @@ public class Stanowisko {
         em.close();
     }
 
-    public String getNazwa(int id) throws Exception {
+    public String getNazwa(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         String name = "";
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -51,7 +52,9 @@ public class Stanowisko {
         return name;
     }
 
-    public void setNazwa(int id, String name) throws Exception {
+    public void setNazwa(String sid, String name) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -76,7 +79,9 @@ public class Stanowisko {
         return stanowiska;
     }
     
-    public Model.Stanowisko getStanowisko(int id) throws Exception {
+    public Model.Stanowisko getStanowisko(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
@@ -90,7 +95,7 @@ public class Stanowisko {
     public static void main(String[] args) {
         try {
             Stanowisko stanowisko = new Stanowisko();
-            System.out.println(stanowisko.getNazwa(1));
+            //System.out.println(stanowisko.getNazwa(1));
         } catch (Exception e) {
             //System.err.println(e.getMessage());
         }

@@ -60,7 +60,8 @@ public class Eksponat {
         em.close();
     }
 
-    public String getNazwa(int id) throws Exception {
+    public String getNazwa(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         String nazwa = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -76,7 +77,9 @@ public class Eksponat {
         return nazwa;
     }
 
-    public void setNazwa(int id, String nazwa) throws Exception {
+    public void setNazwa(String sid, String nazwa) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -89,7 +92,8 @@ public class Eksponat {
         em.close();
     }
 
-    public String getOpis(int id) throws Exception {
+    public String getOpis(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         String opis = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -105,7 +109,8 @@ public class Eksponat {
         return opis;
     }
 
-    public void setOpis(int id, String opis) throws Exception {
+    public void setOpis(String sid, String opis) throws Exception {
+        int id =Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -118,8 +123,9 @@ public class Eksponat {
         em.close();
     }
 
-    public Date getRokPow(int id) throws Exception {
+    public Date getRokPow(String sid) throws Exception {
         Date rokPow = null;
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -134,7 +140,9 @@ public class Eksponat {
         return rokPow;
     }
 
-    public void setRokPow(int id, Date rokPow) throws Exception {
+    public void setRokPow(String sid, Date rokPow) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -147,8 +155,9 @@ public class Eksponat {
         em.close();
     }
 
-    public Date getRokZak(int id) throws Exception {
+    public Date getRokZak(String sid) throws Exception {
         Date rokZak = null;
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -163,7 +172,9 @@ public class Eksponat {
         return rokZak;
     }
 
-    public void setRokZak(int id, Date rokZak) throws Exception {
+    public void setRokZak(String sid, Date rokZak) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();

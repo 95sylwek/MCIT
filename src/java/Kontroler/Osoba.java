@@ -64,8 +64,9 @@ public class Osoba {
         em.close();
     }
 
-    public String getImie(int id) throws Exception {
+    public String getImie(String sid) throws Exception {
         String imie = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -81,7 +82,9 @@ public class Osoba {
         return imie;
     }
 
-    public void setImie(int id, String imie) throws Exception {
+    public void setImie(String sid, String imie) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -94,8 +97,9 @@ public class Osoba {
         em.close();
     }
 
-    public String getNazwisko(int id) throws Exception {
+    public String getNazwisko(String sid) throws Exception {
         String nazwisko = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -111,7 +115,9 @@ public class Osoba {
         return nazwisko;
     }
 
-    public void setNazwisko(int id, String nazwisko) throws Exception {
+    public void setNazwisko(String sid, String nazwisko) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -124,8 +130,9 @@ public class Osoba {
         em.close();
     }
 
-    public String getAdres(int id) throws Exception {
+    public String getAdres(String sid) throws Exception {
         String adres = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -141,7 +148,8 @@ public class Osoba {
         return adres;
     }
 
-    public void setAdres(int id, String adres) throws Exception {
+    public void setAdres(String sid, String adres) throws Exception {
+        int id =Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -154,8 +162,9 @@ public class Osoba {
         em.close();
     }
 
-    public String getTelefon(int id) throws Exception {
+    public String getTelefon(String sid) throws Exception {
         String telefon = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -171,7 +180,9 @@ public class Osoba {
         return telefon;
     }
 
-    public void setTelefon(int id, String telefon) throws Exception {
+    public void setTelefon(String sid, String telefon) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -184,8 +195,9 @@ public class Osoba {
         em.close();
     }
 
-    private String getHaslo(int id) throws Exception {
+    private String getHaslo(String sid) throws Exception {
         String haslo = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -200,7 +212,9 @@ public class Osoba {
         return haslo;
     }
 
-    public void setHaslo(int id, String haslo) throws Exception {
+    public void setHaslo(String sid, String haslo) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -214,8 +228,9 @@ public class Osoba {
         em.close();
     }
 
-    public String getEmail(int id) throws Exception {
+    public String getEmail(String sid) throws Exception {
         String email = null;
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -231,7 +246,9 @@ public class Osoba {
         return email;
     }
 
-    public void setEmail(int id, String email) throws Exception {
+    public void setEmail(String sid, String email) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -307,7 +324,9 @@ public class Osoba {
         return osoby;
     }
     
-    public Model.Osoba getOsoba(int id) throws Exception {
+    public Model.Osoba getOsoba(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 

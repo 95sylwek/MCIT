@@ -64,8 +64,9 @@ public class Lokalizacja {
         em.close();
     }
 
-    public String getNazwa(int id) throws Exception {
+    public String getNazwa(String sid) throws Exception {
         String name = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -80,7 +81,9 @@ public class Lokalizacja {
         return name;
     }
 
-    public void setNazwa(int id, String name) throws Exception {
+    public void setNazwa(String sid, String name) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -93,7 +96,8 @@ public class Lokalizacja {
         em.close();
     }
 
-    public String getOpis(int id) throws Exception {
+    public String getOpis(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         String descrip = "";
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -109,7 +113,9 @@ public class Lokalizacja {
         return descrip;
     }
 
-    public void setOpis(int id, String descrip) throws Exception {
+    public void setOpis(String sid, String descrip) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -122,7 +128,8 @@ public class Lokalizacja {
         em.close();
     }
 
-    public Date getDataOd(int id) throws Exception {
+    public Date getDataOd(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         Date dateFrom = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -138,7 +145,9 @@ public class Lokalizacja {
         return dateFrom;
     }
 
-    public void setDataOd(int id, Date dateFrom) throws Exception {
+    public void setDataOd(String sid, Date dateFrom) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -151,7 +160,8 @@ public class Lokalizacja {
         em.close();
     }
 
-    public Date getDataDo(int id) throws Exception {
+    public Date getDataDo(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         Date dateTo = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -167,7 +177,8 @@ public class Lokalizacja {
         return dateTo;
     }
 
-    public void setDataDo(int id, Date dateTo) throws Exception {
+    public void setDataDo(String sid, Date dateTo) throws Exception {
+        int id =Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -192,7 +203,8 @@ public class Lokalizacja {
         return lokalizacje;
     }
 
-    public Model.Loklaizacja getLoklaizacja(int id) throws Exception {
+    public Model.Loklaizacja getLoklaizacja(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 

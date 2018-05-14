@@ -36,8 +36,9 @@ public class Kategorie {
         em.close();
     }
 
-    public String getNazwa(int id) throws Exception {
+    public String getNazwa(String sid) throws Exception {
         String name = "";
+        int id =Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -52,7 +53,9 @@ public class Kategorie {
         return name;
     }
 
-    public void setNazwa(int id, String name) throws Exception {
+    public void setNazwa(String sid, String name) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -77,7 +80,9 @@ public class Kategorie {
         return kategorie;
     }
     
-    public Model.Kategorie getKategoria(int id) throws Exception {
+    public Model.Kategorie getKategoria(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
