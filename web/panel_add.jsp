@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="Kontroler.Logowania"%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
 <%
     if ((session.getAttribute("id") == null) || (session.getAttribute("id") == "0")) {
@@ -44,27 +45,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
+                        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) {
+                        %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#uzytkownik">Dodaj użytkownika</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(3) || session.getAttribute("idStanowisko").equals(2)) {
+                        %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#eksponat">Dodaj eksponat</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) {
+                        %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#producent">Dodaj producenta</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) {
+                        %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#lokalizacja">Dodaj lokalizacje</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) {
+                        %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#kategoria">Dodaj kategorie</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#stanowisko">Dodaj stanowisko</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
-                        </li>
+                        <% } %>
+
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="panel_admin.jsp">Wróć</a>  
                         </li>
@@ -91,6 +102,11 @@
             </div>
         </header>
 
+
+        <%
+            if ((session.getAttribute("idStanowisko").equals(1)) || (session.getAttribute("idStanowisko").equals(2))) {
+
+        %>
         <!-- Dodaj uzytkownika -->
         <section id="uzytkownik">
             <div class="container">
@@ -102,7 +118,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="addUser" method="POST">
 
                         <div class="form-group">
                             <div class="col-sm-10">
@@ -125,7 +141,7 @@
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="nr_tel">Numer telefonu:</label>
-                                <input type="text" class="form-control" name="nazwisko" placeholder="Wpisz numer telefonu">
+                                <input type="text" class="form-control" name="telefon" placeholder="Wpisz numer telefonu">
                             </div>
                         </div>
                         <div class="form-group">
@@ -146,8 +162,12 @@
                             <div class="col-sm-10"> 
                                 <label for="stanowiako">Stanowisko:</label>                                
                                 <select name="stanowisko" class="form-control"  >
-                                    <option value="">Wybierz stanowisko</option>
-                                    <option>1 opcja </option>
+                                    <jsp:useBean id="stanowisko" class="Kontroler.Stanowisko" scope="session">
+                                        <option value="">Wybierz stanowisko</option>
+                                        <% for (Model.Stanowisko cos : stanowisko.getStanowiska()) { %>
+                                        <option value="<% out.print(cos.getIdStanowisko()); %>"><% out.print(cos.getNazwa());%> </option>
+                                        <% } %>
+                                    </jsp:useBean>
                                 </select>
                             </div>
                         </div>
@@ -165,8 +185,15 @@
             </div>
 
         </section>
+        <% } %>
+
+
 
         <!-- Dodaj Eksponat -->
+        <%
+            if ((session.getAttribute("idStanowisko").equals(3)) || (session.getAttribute("idStanowisko").equals(2))) {
+
+        %>
         <section class="bg-light" id="eksponat">
             <div class="container">
                 <div class="row">
@@ -182,15 +209,19 @@
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="imie" placeholder="Wpisz nazwe" required>
+                                <input type="text" class="form-control" name="nazwa" placeholder="Wpisz nazwe" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10"> 
                                 <label for="lokalizacja">Lokalizacja:</label>                                
                                 <select name="lokalizacja" class="form-control"  >
-                                    <option value="">Wybierz lokalizacja</option>
-                                    <option>1 opcja </option>
+                                    <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="session">
+                                        <option value="">Wybierz lokalizacje</option>
+                                        <% for (Model.Loklaizacja lok : lokalizacja.getLoklaizacje()) { %>
+                                        <option value="<% out.print(lok.getIdLokalizacja()); %>"><% out.print(lok.getNazwa());%> </option>
+                                        <% } %>
+                                    </jsp:useBean>
                                 </select>
                             </div>
                         </div>
@@ -198,17 +229,25 @@
                             <div class="col-sm-10"> 
                                 <label for="kategoria">Kategoria:</label>                                
                                 <select name="kategoria" class="form-control"  >
-                                    <option value="">Wybierz kategorie</option>
-                                    <option>1 opcja </option>
+                                    <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="session">
+                                        <option value="">Wybierz kategorie</option>
+                                        <% for (Model.Kategorie kat : kategoria.getKategorie()) { %>
+                                        <option value="<% out.print(kat.getIdKategoria()); %>"><% out.print(kat.getNazwa());%> </option>
+                                        <% } %>
+                                    </jsp:useBean>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10"> 
-                                <label for="producent">Producent:</label>                                
-                                <select name="producent" class="form-control"  >
-                                    <option value="">Wybierz producenta</option>
-                                    <option>1 opcja </option>
+                                <label for="producenci">Producent:</label>                                
+                                <select name="producenci" class="form-control"  >
+                                    <jsp:useBean id="produ" class="Kontroler.Producenci" scope="session">
+                                        <option value="">Wybierz producenta</option>
+                                        <% for (Model.Producenci prod : produ.getProducenci()) { %>
+                                        <option value="<% out.print(prod.getIdProducent()); %>"><% out.print(prod.getNazwa());%> </option>
+                                        <% } %>
+                                    </jsp:useBean>
                                 </select>
                             </div>
                         </div>
@@ -250,8 +289,12 @@
 
             </div>
         </section>
-
+        <% } %>
         <!-- Dodaj producenta -->
+        <%
+            if ((session.getAttribute("idStanowisko").equals(2))) {
+
+        %>
         <section id="producent">
             <div class="container">
                 <div class="row">
@@ -299,9 +342,13 @@
                 </div>
             </div>
         </section>
-
+        <% } %>
 
         <!-- Dodaj lokalizacje -->
+        <%
+            if ((session.getAttribute("idStanowisko").equals(2))) {
+
+        %>
         <section id="lokalizacja">
             <div class="container">
                 <div class="row">
@@ -349,9 +396,13 @@
                 </div>
             </div>
         </section>
-
+        <% } %>
 
         <!-- Dodaj kategorie -->
+        <%
+            if ((session.getAttribute("idStanowisko").equals(2))) {
+
+        %>
         <section id="kategoria">
             <div class="container">
                 <div class="row">
@@ -386,264 +437,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- Dodaj stanowisko -->
-        <section id="stanowisko">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Dodaj stanowisko</h2>
-                        <h3 class="section-subheading text-muted"></h3>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" action="#">
-
-                        <div class="form-group">
-                            <div class="col-sm-10">
-                                <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="imie" placeholder="Wpisz nazwe" required>
-                            </div>
-                        </div>
-                        <div class="form-group"> 
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="col-lg-12 text-center">
-                                    <button type="submit" class="btn btn-default">Dodaj stanowisko</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+        <% } %>
 
 
 
-        <!-- Contact -->
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Kontakt</h2>
-                        <h3 class="section-subheading text-muted"></h3>
-                    </div>
-                </div>
 
-            </div>
-        </section>
-
-
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; MUZEUM TEAM </span>
-                    </div>
-
-
-                </div>
-            </div>
-        </footer>
-
-        <!-- Portfolio Modals -->
-
-        <!-- Modal 1 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 1</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p> Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 2 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 2</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p>Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 3 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 3</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p>Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 4 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 4</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p>Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 5 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 5</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p>Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 6 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal">
-                        <div class="lr">
-                            <div class="rl"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="modal-body">
-                                    <!-- Project Details Go Here -->
-                                    <h2 class="text-uppercase">Eksponat 6</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="img/portfolio/z1.jpg" alt="">
-                                    <p>Opis eksponatu Opis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatuOpis eksponatu</p>
-
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                        <i class="fa fa-times"></i>
-                                        Zamknij okno</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Contact form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
-
-        <!-- Custom scripts for this template -->
-        <script src="js/agency.min.js"></script>
-
-    </body>
-
-</html>
-<%}%>
+        <%@include file="footer.jsp" %>
+        <%}%>
