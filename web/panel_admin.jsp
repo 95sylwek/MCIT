@@ -49,7 +49,7 @@
                             <a class="nav-link js-scroll-trigger" href="panel_add.jsp">Dodaj</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#producent">Edycja/usuń</a>
+                            <a class="nav-link js-scroll-trigger" href="all_ekspo.jsp">Edycja/usuń</a>
                         </li>
                         <li class="nav-item">
                         <li class="nav-item">
