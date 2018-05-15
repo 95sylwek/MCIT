@@ -113,7 +113,7 @@
 
  
                <% }
-                }catch(Exception e){ out.print("pusta baza"); }%>
+                }catch(Exception e){ out.print("pusta baza"); out.print(e.getMessage()); }%>
                 </div>
           
           
@@ -196,7 +196,8 @@
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase"><% out.print(cos.getNazwa()); %></h2>
                   <p>
-                      <% out.print(cos.getOpis()); %>
+                      <% out.print(cos.getZdj()); %>
+                      <img src="data:image/jpeg;base64, <% out.print(cos.getZdj());  %> ">
                   </p>
                   <p class="item-intro text-muted"></p>
             

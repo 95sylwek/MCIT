@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="addExhibit" enctype="multipart/form-data" method="POST">
+                    <form class="form-horizontal" action="addExhibit"  method="POST">
 
                         <div class="form-group">
                             <div class="col-sm-10">

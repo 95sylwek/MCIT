@@ -88,6 +88,8 @@ public class Eksponat {
 
         return nazwa;
     }
+    
+    
 
     public void setNazwa(String sid, String nazwa) throws Exception {
         int id =Integer.parseInt(sid);
@@ -198,12 +200,28 @@ public class Eksponat {
         em.getTransaction().commit();
         em.close();
     }
+        public String getZdj(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        String zdj = null;
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Eksponaty eksponat = em.find(Model.Eksponaty.class, id);
+        zdj = eksponat.getZdj();
+
+        em.getTransaction().commit();
+        em.close();
+
+        return zdj;
+    }
 
     public List<Model.Eksponaty> getEksponaty() throws Exception {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
-        Query q = em.createQuery("SELECT e FROM Eksponat e");
+        Query q = em.createQuery("SELECT e FROM Eksponaty e");
         List eksponaty = (List) q.getResultList();
 
         em.close();

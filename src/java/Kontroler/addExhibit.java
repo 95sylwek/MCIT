@@ -7,6 +7,8 @@ package Kontroler;
 
 import Model.Eksponaty_;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *
@@ -44,10 +47,14 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             Date data_do = df.parse(request.getParameter("rokzakpro"));
             String zdj = request.getParameter("zdj");
             
+             File f =  new File("C:/test/test.jpg");
+             String encodstring = encodeFileToBase64Binary(f);
+             System.out.println(encodstring);
             
             
             
-            Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, zdj, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
+            
+            Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, encodstring, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
         } catch (Exception e) {
             System.err.println(e.getMessage());
             response.sendRedirect("error.jsp");
@@ -55,5 +62,21 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
         
         response.sendRedirect("panel_add.jsp");
     }
-    
+           private static String encodeFileToBase64Binary(File file){
+            String encodedfile = null;
+            try {
+                FileInputStream fileInputStreamReader = new FileInputStream(file);
+                byte[] bytes = new byte[(int)file.length()];
+                fileInputStreamReader.read(bytes);
+                encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return encodedfile;
+        }
 }
