@@ -6,10 +6,13 @@
 package Kontroler;
 
 import Model.Eksponaty_;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +21,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+
+
+
+
 
 /**
  *
@@ -46,15 +55,51 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             Date data_od = df.parse(request.getParameter("rokpow"));
             Date data_do = df.parse(request.getParameter("rokzakpro"));
             String zdj = request.getParameter("zdj");
+           // Part filePart = request.getPart("zdj");
+           
             
-             File f =  new File("C:/test/test.jpg");
-             String encodstring = encodeFileToBase64Binary(f);
-             System.out.println(encodstring);
+            //InputStream inputStream = null;
             
+            //inputStream = filePart.getInputStream();
             
+           // filePart.toString();
+            // File f =  new File("c");
+            // String encodstring = encodeFileToBase64Binary(f);
+          //   System.out.println(encodstring);
+          
+           // System.out.println(filePart);
             
+          // ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           
+           
+          // InputStream inputStream = null;
+          // Part filePart = request.getPart("zdj");
+          // inputStream = filePart.getInputStream();
+           
+          InputStream inputStream = null; // input stream of the upload file
+             
+            // obtains the upload file part in this multipart request
+            Part filePart = request.getPart("zdj");
+            if (filePart != null) {
+                // prints out some information for debugging
+                System.out.println(filePart.getName());
+                 String filepath=filePart.getName().toString();
+                inputStream = filePart.getInputStream();
+                
+    	   // InputStream fileName = new FileInputStream(filePart);
+    	  //  File file =fileName.getPath();
+     
+            }
             
-            Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, encodstring, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
+          // String encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+           // System.out.println(encodedfile);
+
+
+           
+           
+           
+            
+            Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, zdj, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
         } catch (Exception e) {
             System.err.println(e.getMessage());
             response.sendRedirect("error.jsp");

@@ -63,6 +63,11 @@ public class Kategorie implements Serializable {
     public Kategorie(String nazwa) {
         this.nazwa = nazwa;
     }
+    
+    public Kategorie(String nazwa, String opis) {
+        this.nazwa = nazwa;
+        this.opis = opis;
+    }
 
     public Integer getIdKategoria() {
         return idKategoria;

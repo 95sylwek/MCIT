@@ -35,6 +35,19 @@ public class Kategorie {
         em.getTransaction().commit();
         em.close();
     }
+    
+    public Kategorie(String name, String opis) throws Exception {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Kategorie kategoria = new Model.Kategorie(name,opis);
+        em.persist(kategoria);
+
+        em.persist(kategoria);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public String getNazwa(String sid) throws Exception {
         String name = "";
@@ -62,6 +75,37 @@ public class Kategorie {
 
         Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
         kategoria.setNazwa(name);
+
+        em.persist(kategoria);
+        em.getTransaction().commit();
+        em.close();
+    }
+        public String getOpis(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        String descrip = "";
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
+        descrip = kategoria.getOpis();
+
+        em.getTransaction().commit();
+        em.close();
+
+        return descrip;
+    }
+    
+       public void setOpis(String sid, String descrip) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Kategorie kategoria= em.find(Model.Kategorie.class, id);
+        kategoria.setOpis(descrip);
 
         em.persist(kategoria);
         em.getTransaction().commit();

@@ -6,12 +6,12 @@
         response.sendRedirect("index.jsp");
     } else {
 %>
-<html lang="en">
 
 
+<html lang="pl">
     <head>
 
-        <meta charset="utf-8">
+        <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="addUser" method="POST">
+                    <form class="form-horizontal" action="addUser" method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="addExhibit"  method="POST">
+                    <form class="form-horizontal" action="addExhibit"  method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
@@ -280,7 +280,7 @@
                         <div class="form-group"> 
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="col-lg-12 text-center">
-                                    <button type="submit" class="btn btn-default">Dodaj eksponat</button>
+                                    <button type="submit" class="btn btn-default" value = "submit" >Dodaj eksponat</button>
                                 </div>
                             </div>
                         </div>
@@ -304,12 +304,12 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="addProducent"  method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="imie" placeholder="Wpisz nazwe" required>
+                                <input type="text" class="form-control" name="nazwa" placeholder="Wpisz nazwe" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -358,12 +358,12 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="addLocation"  method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="imie" placeholder="Wpisz nazwe" required>
+                                <input type="text" class="form-control" name="lokalizacja" placeholder="Wpisz nazwe" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -412,12 +412,12 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="addCategory"  method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="imie" placeholder="Wpisz nazwe" required>
+                                <input type="text" class="form-control" name="nazwa" placeholder="Wpisz nazwe" required>
                             </div>
                         </div>
                         <div class="form-group">
