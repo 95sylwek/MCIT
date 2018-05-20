@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sylwester
  */
-@WebServlet("/addLocation")
+@WebServlet("/addCategory")
 public class addCategory extends HttpServlet implements java.io.Serializable{
      protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
