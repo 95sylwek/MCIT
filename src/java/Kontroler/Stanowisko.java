@@ -91,6 +91,20 @@ public class Stanowisko {
 
         return stanowisko;
     }
+    
+    public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+       Model.Stanowisko stanowisko = em.find(Model.Stanowisko.class, id);
+
+        em.remove(stanowisko);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         try {

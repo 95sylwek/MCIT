@@ -239,6 +239,20 @@ public class Eksponat {
         
         return eksponat;
     }
+    
+    public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+       Model.Eksponaty eksponat = em.find(Model.Eksponaty.class, id);
+
+        em.remove(eksponat);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         

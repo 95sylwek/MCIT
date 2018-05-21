@@ -1,9 +1,14 @@
 <%@page import="Model.Eksponaty"%>
 <%@page import="Kontroler.Eksponat"%>
 <%@page import="Kontroler.Kategorie"%>
-<!DOCTYPE html>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
-<html lang="en">
+<%
+    if ((session.getAttribute("id") == null) || (session.getAttribute("id") == "0")) {
+        response.sendRedirect("index.jsp");
+    } else {
+%>
+<!DOCTYPE html>
+<html lang="pl">
 
 
     <head>
@@ -56,10 +61,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#kategoria">Edycja kategorii</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
-                        </li>
+                        </li> 
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="panel_admin.jsp">Wróć</a>  
                         </li>
@@ -69,8 +71,6 @@
 
                         </div>
                     </ul>
-
-
                 </div>
             </div>
         </nav>
@@ -84,42 +84,37 @@
                 </div>
             </div>
         </header>
-        
+
         <section class="bg-light" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Wszystkie eksponaty</h2>
-            <h3 class="section-subheading text-muted"></h3>
-          </div>
-        </div>
-           <div class="row">
-                  <%
-            
-               try{ 
-                   Eksponat eksponaty =new Eksponat ();
-                   for (Model.Eksponaty cos : eksponaty.getEksponaty()){   
-        %>
-               
-          <div class="col-md-4 col-sm-6 portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdEksponat());%>">
-              <div class="portfolio-hover"> 
-              </div>
-                <div class="portfolio-caption">
-                <h4><% out.print(cos.getNazwa()); %></h4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Wszystkie eksponaty</h2>
+                        <h3 class="section-subheading text-muted"></h3>
+                    </div>
                 </div>
-            </a>
-          </div>
+                <div class="row">
+                    <jsp:useBean id="eksponat" class="Kontroler.Eksponat" scope="request">
+                        <%
+                            for (Model.Eksponaty cos : eksponat.getEksponaty()) {
+                        %>
 
- 
-               <% }
-                }catch(Exception e){ out.print("pusta baza"); out.print(e.getMessage()); }%>
+                        <div class="col-md-4 col-sm-6 portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdEksponat());%>">
+                                <div class="portfolio-hover"> 
+                                </div>
+                                <div class="portfolio-caption">
+                                    <h4><% out.print(cos.getNazwa()); %></h4>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <% } %>
+                    </jsp:useBean>
                 </div>
-          
-          
-
-      </div>
-    </section>
+            </div>
+        </section>
 
         <section id="uzy">
             <center> <div class="container">
@@ -129,9 +124,9 @@
                         </div>
                     </div>
                     <div class="modal-body">
-                        <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="session">
+                        <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="request">
                             <%
-                            for (Model.Osoba cos : osoba.getOsoby()) {                          
+                                for (Model.Osoba cos : osoba.getOsoby()) {
                             %>
 
                             <div class="form-group" > 
@@ -144,7 +139,7 @@
                                             <div class="col-lg-12 text-center">
                                                 <form action="show_edit" method="POST">
                                                     <input class="d-none" type="text" name="edit_id_user" value="<% out.print(cos.getIdOsoba());%>" />
-                                                            <button type="submit" class="btn btn-default">Edytuj</button>
+                                                    <button type="submit" class="btn btn-default">Edytuj</button>
                                                 </form>
                                                 <button type="submit" class="btn btn-default">Usuń</button>
                                             </div>
@@ -172,47 +167,42 @@
 
             </div>
         </section>
-        
+
         <!-- Modal 1 -->
-                      <%
-            
-               try{ 
-                   Eksponat eksponat =new Eksponat ();
-                   for (Model.Eksponaty cos : eksponat.getEksponaty()){   
-        %>
-               
-        <div class="portfolio-modal modal fade" id="<% out.print(cos.getIdEksponat());%>" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase"><% out.print(cos.getNazwa()); %></h2>
-                  <p>
-                      <% out.print(cos.getZdj()); %>
-                      <img src="data:image/jpeg;base64, <% out.print(cos.getZdj());  %> ">
-                  </p>
-                  <p class="item-intro text-muted"></p>
-            
+        <jsp:useBean id="eksponat1" class="Kontroler.Eksponat" scope="request">
+            <%
+                for (Model.Eksponaty cos : eksponat1.getEksponaty()) {
+            %>
+
+            <div class="portfolio-modal modal fade" id="<% out.print(cos.getIdEksponat());%>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="close-modal" data-dismiss="modal">
+                            <div class="lr">
+                                <div class="rl"></div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 mx-auto">
+                                    <div class="modal-body">
+                                        <!-- Project Details Go Here -->
+                                        <h2 class="text-uppercase"><% out.print(cos.getNazwa()); %></h2>
+                                        <p>
+                                            <% out.print(cos.getZdj()); %>
+                                            <img src="data:image/jpeg;base64, <% out.print(cos.getZdj());  %> ">
+                                        </p>
+                                        <p class="item-intro text-muted"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-       <% }
-                }catch(Exception e){ out.print("pusta baza"); }%>
-
-
+            <% }%>
+        </jsp:useBean>
 
         <!-- Footer -->
         <footer>
@@ -242,5 +232,5 @@
         <script src="js/agency.min.js"></script>
 
     </body>
-
 </html>
+<% } %>

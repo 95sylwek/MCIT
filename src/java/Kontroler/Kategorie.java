@@ -136,6 +136,20 @@ public class Kategorie {
 
         return kategoria;
     }
+    
+     public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+       Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
+
+        em.remove(kategoria);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         try {

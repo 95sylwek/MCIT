@@ -162,6 +162,7 @@ public class Osoba implements Serializable {
 
     public void setStanowisko(Stanowisko stanowisko) {
         this.stanowisko = stanowisko;
+        
     }
 
     @Override
@@ -186,7 +187,7 @@ public class Osoba implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Osoba[ idOsoba=" + idOsoba + " ]";
+        return  imie+" "+nazwisko;
     }
     
 }

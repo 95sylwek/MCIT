@@ -201,6 +201,20 @@ public class Producenci {
         return producent;
     }
     
+    public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+       Model.Producenci producent = em.find(Model.Producenci.class, id);
+
+        em.remove(producent);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
     public static void main(String[] args) {
         
     }

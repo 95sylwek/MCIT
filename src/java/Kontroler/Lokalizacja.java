@@ -214,6 +214,20 @@ public class Lokalizacja {
 
         return lokalizacja;
     }
+    
+    public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+       Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+
+        em.remove(lokalizacja);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         try{ 

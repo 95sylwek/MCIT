@@ -260,6 +260,34 @@ public class Osoba {
         em.getTransaction().commit();
         em.close();
     }
+    
+    public Model.Stanowisko getStanowisko(String sid) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        
+        Model.Osoba osoba = em.find(Model.Osoba.class, id);
+        Model.Stanowisko stanowisko = osoba.getStanowisko();        
+        
+        em.close();
+        
+        return stanowisko;
+    }
+    
+    public void remove(String sid) throws Exception{
+        int id =Integer.parseInt(sid);
+        
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Osoba osoba = em.find(Model.Osoba.class, id);
+
+        em.remove(osoba);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     private static String encryptPassword(String password) {
         String sha1 = "";
@@ -303,8 +331,7 @@ public class Osoba {
             }
         } else {
             osoba = null;
-        }
-        System.out.print("dziala");
+        }        
 
         em.getTransaction().commit();
         em.close();
@@ -336,6 +363,8 @@ public class Osoba {
 
         return osoba;
     }
+    
+    
 
     public static void main(String[] args) {
         String password = "CosTam12";
