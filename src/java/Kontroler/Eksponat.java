@@ -150,7 +150,7 @@ public class Eksponat {
             sday = "0" + sday;
         }
         
-        Integer mouth = eksponat.getRokpow().getMonth();
+        Integer mouth = eksponat.getRokpow().getMonth()+1;
         String smouth = mouth.toString();
         if (smouth.length() == 1) {
             smouth = "0" + smouth;
@@ -197,7 +197,7 @@ public class Eksponat {
             sday = "0" + sday;
         }
         
-        Integer mouth = eksponat.getRokzak().getMonth();
+        Integer mouth = eksponat.getRokzak().getMonth()+1;
         String smouth = mouth.toString();
         if (smouth.length() == 1) {
             smouth = "0" + smouth;
