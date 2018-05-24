@@ -59,77 +59,46 @@
             </div>
         </header>
 
-        <!-- Edytuj uzytkownika -->
+        <!-- Edytuj producenta -->
         <section id="uzytkownik">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">edytuj użytkownika</h2>
+                        <h2 class="section-heading text-uppercase">Edytuj producenta</h2>
                         <h3 class="section-subheading text-muted"></h3>
                     </div>
                 </div>
 
                 <div class="modal-body">
                     <form class="form-horizontal" action="#">
-                        <jsp:useBean id="user" class="Kontroler.Osoba" scope="request">                           
+                        <jsp:useBean id="user" class="Kontroler.Producenci" scope="request">                           
                             <% String id = session.getAttribute("edit_id_user").toString(); %>                           
 
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="imie">Imie:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(user.getImie(id)); %>" > </p>
+                                    <label for="imie">Nazwa:</label>
+                                    <p> <input type="text" class="form-control" name="nazwa" value="<% out.print(user.getNazwa(id)); %>" > </p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="nazwisko">Nazwisko:</label>
-                                    <input type="text" class="form-control" name="nazwisko" value="<% out.print(user.getImie(id)); %>">
+                                    <label for="nazwisko">Opis:</label>
+                                    <input type="text" class="form-control" name="opis" value="<% out.print(user.getOpis(id)); %>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="adres">Adres:</label>
-                                    <input type="text" class="form-control" name="adres" value="<% out.print(user.getNazwisko(id)); %>">
+                                    <label for="adres">Rok pow:</label>
+                                    <input type="date" class="form-control" name="rokpow" value="<% out.print(user.getRokPow(id)); %>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="nr_tel">Numer telefonu:</label>
-                                    <input type="text" class="form-control" name="nazwisko" value="<% out.print(user.getTelefon(id)); %>">
+                                    <label for="nr_tel">Rok zak:</label>
+                                    <input type="date" class="form-control" name="rokzak" value="<% out.print(user.getRokZak(id)); %>">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" name="email" value="<% out.print(user.getEmail(id)); %>">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-10"> 
-                                    <label for="pwd">Hasło:</label>
-                                    <input type="password" class="form-control" name="pass" value="<% out.print(user.getOsoba(id).getHaslo()); %>">
-                                </div>
-                            </div>
-
-                            <!-- do poprawy na pozniej (rozwijany wybor stanowiska, domyslne aktualen stanowisko) -->
-                            <div class="form-group">
-                                <div class="col-sm-10"> 
-                                    <label for="stanowiako">Stanowisko:</label>                                
-                                    <select name="stanowisko" class="form-control"  >
-                                        <jsp:useBean id="stanowisko" class="Kontroler.Stanowisko" scope="request">
-                                            <option value="<% out.print(user.getStanowisko(id).getIdStanowisko()); %>"><% out.print(user.getStanowisko(id).getNazwa()); %></option>
-                                            <% for (Model.Stanowisko cos : stanowisko.getStanowiska()) {
-                                                    if (cos.getIdStanowisko() != user.getStanowisko(id).getIdStanowisko()) {
-                                            %>                                            
-                                            <option value="<% out.print(cos.getIdStanowisko()); %>"><% out.print(cos.getNazwa());%> </option>
-                                            <% }
-                                                }%>
-                                        </jsp:useBean>             
-                                    </select>
-                                </div>
-                            </div>
-                            
+                                                        
                             <div class="form-group"> 
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="col-lg-12 text-center">

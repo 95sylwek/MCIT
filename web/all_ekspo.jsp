@@ -47,28 +47,35 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
+                        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#uzy">Edycja użytkownika</a>
+                            <a class="nav-link js-scroll-trigger" href="#uzytkownik">Edytuj użytkownika</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(3) || session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#">Edycja eksponatu</a>
+                            <a class="nav-link js-scroll-trigger" href="#eksponat">Edytuj eksponat</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#producent">Edycja producenta</a>
+                            <a class="nav-link js-scroll-trigger" href="#producent">Edytuj producenta</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#lokalizacja">Edycja lokalizacji</a>
+                            <a class="nav-link js-scroll-trigger" href="#lokalizacja">Edytuj lokalizacje</a>
                         </li>
+                        <% } %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#kategoria">Edycja kategorii</a>
-                        </li> 
+                            <a class="nav-link js-scroll-trigger" href="#kategoria">Edytuj kategorie</a>
+                        </li>
+                        <% } %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="panel_admin.jsp">Wróć</a>  
                         </li>
-
-
                         <div class="search-container">
-
                         </div>
                     </ul>
                 </div>
@@ -85,45 +92,16 @@
             </div>
         </header>
 
-        <section class="bg-light" id="portfolio">
+        <!--userow-->
+        <section class="bg-light" id="uzytkownik">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Wszystkie eksponaty</h2>
+                        <h2 class="section-heading text-uppercase">Edycja użytkowników</h2>
                         <h3 class="section-subheading text-muted"></h3>
                     </div>
                 </div>
-                <div class="row">
-                    <jsp:useBean id="eksponat" class="Kontroler.Eksponat" scope="request">
-                        <%
-                            for (Model.Eksponaty cos : eksponat.getEksponaty()) {
-                        %>
-
-                        <div class="col-md-4 col-sm-6 portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdEksponat());%>">
-                                <div class="portfolio-hover"> 
-                                </div>
-                                <div class="portfolio-caption">
-                                    <h4><% out.print(cos.getNazwa()); %></h4>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <% } %>
-                    </jsp:useBean>
-                </div>
-            </div>
-        </section>
-
-        <section id="uzy">
-            <center> <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-heading text-uppercase" >Edycja użytkownika</h2>                        
-                        </div>
-                    </div>
-                    <div class="modal-body">
+                <center><div class="row">
                         <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="request">
                             <%
                                 for (Model.Osoba cos : osoba.getOsoby()) {
@@ -141,7 +119,7 @@
                                                     <input class="d-none" type="text" name="edit_id_user" value="<% out.print(cos.getIdOsoba());%>" />
                                                     <button type="submit" class="btn btn-default">Edytuj</button>
                                                 </form>
-                                                <button type="submit" class="btn btn-default">Usuń</button>
+                                                <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
                                             </div>
                                         </div>
                                     </div>        
@@ -149,7 +127,146 @@
                             </div> 
                             <% } %>
                         </jsp:useBean>
+                    </div></center>
+            </div>
+        </section>
+
+        <!--Eksponaty--> 
+        <section class="bg-light" id="eksponat">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Edycja eksponatów</h2>
+                        <h3 class="section-subheading text-muted"></h3>
                     </div>
+                </div>
+                <center><div class="row">
+                        <jsp:useBean id="eksponat" class="Kontroler.Kategorie" scope="request">
+                            <%
+                                for (Model.Kategorie cos : eksponat.getKategorie()) {
+                                    
+                            %>
+                            <a href=" panel_przej_ekspo.jsp?id=<% out.print(cos.getIdKategoria()); %>"><% out.print(cos.getNazwa()); %> </a>
+<!--                                <form action="show_ekspo" method="GET">
+                                    <% //response.sendRedirect("panel_przej_ekspo.jsp"+cos.getIdKategoria()); %>
+                                    <input class="d-none" type="text" name="id_kat" value="<% out.print(cos.getIdKategoria());%>" />
+                                    <button type="submit" class="btn btn-default"><% out.print(cos.getNazwa()); %></button>
+
+                           
+                                     
+                                </form>-->
+\
+
+
+                            <% } %>
+                        </jsp:useBean>
+                    </div></center>
+            </div>
+        </section>
+
+
+
+        <!--Producent-->
+        <section id="producent" >
+            <center> <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading text-uppercase">Edycja producenta</h2>
+                            <h3 class="section-subheading text-muted"></h3>                       
+                        </div>
+                    </div>
+                    <center><div class="row">
+                            <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">
+                                <%
+                                    for (Model.Producenci cos : producent.getProducenci()) {
+                                %>
+
+                                <div class="col-md-4 col-sm-6 portfolio-item">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdProducent());%>">
+
+                                        <div class="portfolio-caption">
+                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+
+                                        </div>
+                                    </a>
+
+                                </div>
+
+
+                                <% } %>
+                            </jsp:useBean>
+                        </div></center>
+
+                </div>
+            </center>
+        </section>
+
+        <!--Wydarzenie-->
+        <section id="lokalizacja" class="bg-light">
+            <center> <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading text-uppercase" >Edycja lokalizacji</h2> 
+                            <h3 class="section-subheading text-muted"></h3> 
+                        </div>
+                    </div>
+                    <center><div class="row">
+                            <jsp:useBean id="wydarzenia" class="Kontroler.Lokalizacja" scope="request">
+                                <%
+                                    for (Model.Loklaizacja cos : wydarzenia.getLoklaizacje()) {
+                                %>
+
+                                <div class="col-md-4 col-sm-6 portfolio-item">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdLokalizacja());%>">
+
+                                        <div class="portfolio-caption">
+                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+
+                                        </div>
+                                    </a>
+
+                                </div>
+
+
+                                <% } %>
+                            </jsp:useBean>
+                        </div></center>
+
+                </div>
+            </center>
+        </section>
+
+        <!--Kategoria-->
+        <section id="kategoria" >
+            <center> <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading text-uppercase" >Edycja kategorii</h2>                        
+                        </div>
+                    </div>
+
+                    <center><div class="row">
+                            <jsp:useBean id="kat" class="Kontroler.Kategorie" scope="request">
+                                <%
+                                    for (Model.Kategorie cos : kat.getKategorie()) {
+                                %>
+
+                                <div class="col-md-4 col-sm-6 portfolio-item">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdKategoria());%>">
+
+                                        <div class="portfolio-caption">
+                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+
+                                        </div>
+                                    </a>
+
+                                </div>
+
+
+                                <% } %>
+                            </jsp:useBean>
+                        </div></center>
+
                 </div>
             </center>
         </section>
@@ -165,44 +282,11 @@
                     </div>
                 </div>
 
+
             </div>
         </section>
 
-        <!-- Modal 1 -->
-        <jsp:useBean id="eksponat1" class="Kontroler.Eksponat" scope="request">
-            <%
-                for (Model.Eksponaty cos : eksponat1.getEksponaty()) {
-            %>
 
-            <div class="portfolio-modal modal fade" id="<% out.print(cos.getIdEksponat());%>" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="close-modal" data-dismiss="modal">
-                            <div class="lr">
-                                <div class="rl"></div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 mx-auto">
-                                    <div class="modal-body">
-                                        <!-- Project Details Go Here -->
-                                        <h2 class="text-uppercase"><% out.print(cos.getNazwa()); %></h2>
-                                        <p>
-                                            <% out.print(cos.getZdj()); %>
-                                            <img src="data:image/jpeg;base64, <% out.print(cos.getZdj());  %> ">
-                                        </p>
-                                        <p class="item-intro text-muted"></p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% }%>
-        </jsp:useBean>
 
         <!-- Footer -->
         <footer>
@@ -233,4 +317,4 @@
 
     </body>
 </html>
-<% } %>
+<% }%>
