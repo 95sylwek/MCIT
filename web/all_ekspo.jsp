@@ -253,9 +253,10 @@
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
                                     <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kate.getIdKategoria());%>">
+                   
 
                                         <div class="portfolio-caption">
-                                            <h4><% out.print(kate.getNazwa()); %></h4>                                 
+                                            <h4> <a href=" panel_edycja_kat.jsp?id=<% out.print(kate.getIdKategoria()); %>"><% out.print(kate.getNazwa()); %> </a></h4>                                 
 
                                         </div>
                                     </a>

@@ -59,34 +59,34 @@
             </div>
         </header>
 
-        <!-- Edytuj uzytkownika -->
+        <!-- Edytuj eksponat -->
         <section id="uzytkownik">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">edytuj kategorie</h2>
+                        <h2 class="section-heading text-uppercase">Edytuj eksponat</h2>
                         <h3 class="section-subheading text-muted"></h3>
                     </div>
                 </div>
 
                 <div class="modal-body">
                     <form class="form-horizontal" action="#">
-                        <jsp:useBean id="user" class="Kontroler.Kategorie" scope="request">                           
-                            <% String id = session.getAttribute("edit_id_user").toString(); %>                           
-
+                        <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="request">                           
+                            <% String sid = request.getParameter("id");
+                                int x = Integer.parseInt(sid);
+                                Model.Kategorie kat = kategoria.getKategoria(sid); %> 
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(user.getNazwa(id)); %>" > </p>
+                                    <input type="text" class="form-control" name="nazwa" value="<% out.print(kat.getNazwa()); %>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="nazwisko">Opis:</label>
-                                    <input type="text" class="form-control" name="nazwisko" value="<% out.print(user.getOpis(id)); %>">
+                                    <label for="opis">Opis:</label>
+                                    <textarea class="form-control" name="opis"  rows="4" cols="50"><% out.print(kat.getOpis()); %></textarea>                                
                                 </div>
                             </div>
-                                                        
                             <div class="form-group"> 
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="col-lg-12 text-center">
