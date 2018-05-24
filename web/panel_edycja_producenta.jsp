@@ -71,38 +71,42 @@
 
                 <div class="modal-body">
                     <form class="form-horizontal" action="#">
-                        <jsp:useBean id="user" class="Kontroler.Producenci" scope="request">                           
-                            <% String id = session.getAttribute("edit_id_user").toString(); %>                           
+                        <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">                           
+                            <% String sid = request.getParameter("id");
+                                int az = Integer.parseInt(sid);
+                                Model.Producenci uk = producent.getProducent(sid); %>                           
 
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>
-                                    <p> <input type="text" class="form-control" name="nazwa" value="<% out.print(user.getNazwa(id)); %>" > </p>
+                                    <p> <input type="text" class="form-control" name="nazwa" value="<% out.print(uk.getNazwa()); %>" > </p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="nazwisko">Opis:</label>
-                                    <input type="text" class="form-control" name="opis" value="<% out.print(user.getOpis(id)); %>">
+                                    <label for="imie">Opis:</label>
+                                    <textarea type="text" class="form-control" name="opis"> <% out.print(uk.getOpis()); %> </textarea>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="adres">Rok pow:</label>
-                                    <input type="date" class="form-control" name="rokpow" value="<% out.print(user.getRokPow(id)); %>">
+                                    <label for="imie">Rok pow:</label>
+                                    <p> <input type="date" class="form-control" name="rokpow" value="<% out.print(producent.getRokPow(sid)); %>" > </p>
                                 </div>
                             </div>
-                            <div class="form-group">
+                                <div class="form-group">
                                 <div class="col-sm-10">
-                                    <label for="nr_tel">Rok zak:</label>
-                                    <input type="date" class="form-control" name="rokzak" value="<% out.print(user.getRokZak(id)); %>">
+                                    <label for="imie">Rok zak:</label>
+                                    <p> <input type="date" class="form-control" name="rokzak" value="<% out.print(producent.getRokZak(sid)); %>" > </p>
                                 </div>
                             </div>
-                                                        
+
                             <div class="form-group"> 
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="col-lg-12 text-center">
-                                        <button type="submit" class="btn btn-default">Edytuj użytkownika</button>
+                                        <button type="submit" class="btn btn-default">Edytuj eksponat</button>
                                     </div>
                                 </div>
                             </div>

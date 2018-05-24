@@ -182,11 +182,10 @@
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(pro.getIdProducent());%>">
+                                    
 
-                                        <div class="portfolio-caption">
-                                            <h4><% out.print(pro.getNazwa()); %></h4>                                 
-
+                                        <div class="portfolio-caption">                                           
+                                            <h4>  <a href="panel_edycja_producenta.jsp?id=<% out.print(pro.getIdProducent());%>"><% out.print(pro.getNazwa()); %></h4>
                                         </div>
                                     </a>
 
