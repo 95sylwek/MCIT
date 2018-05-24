@@ -110,8 +110,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </form>
+                      <form action="remove_lokalizacja" method="POST">
+                    <input class="d-none" type="text" name="remove_lokalizacja" value="<% out.print(lok.getIdLokalizacja());%>" />
+                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                </form>
                         </jsp:useBean>                            
-                    </form>
+                    
                 </div>
             </div>
         </section>

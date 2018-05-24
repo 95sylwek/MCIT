@@ -255,10 +255,12 @@ public class Eksponat {
     public List<Model.Eksponaty> getEksponaty() throws Exception {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
 
         Query q = em.createQuery("SELECT e FROM Eksponaty e");
         List eksponaty = (List) q.getResultList();
-
+        
+        em.getTransaction().commit();
         em.close();
 
         return eksponaty;

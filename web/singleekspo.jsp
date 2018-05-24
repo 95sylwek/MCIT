@@ -64,29 +64,35 @@
         <section>
             <jsp:useBean id="eksponat" class="Kontroler.Eksponat" scope="request">
 
-                    <% String sid = request.getParameter("id"); 
-                    int x= Integer.parseInt(sid);
-                          Model.Eksponaty ek = eksponat.getEksponat(x);
-                          
-                         
-                    %>     
-                    
-                   
-             <p><% out.print(ek.getNazwa()); %></p>
-             <p><% out.print(ek.getLoklaizacja().getNazwa()); %></p>
-             <p><% out.print(ek.getKategoria().getNazwa()); %></p>
-             <p><% out.print(ek.getPooducent().getNazwa()); %></p>
-             <p><% out.print(ek.getOpis()); %></p>
-             <p><% out.print(ek.getRokpow()); %></p>
-             <p><% out.print(ek.getRokzak()); %></p>
-             
-             <% if (session.getAttribute("idStanowisko")!=null  && session.getAttribute("idStanowisko").equals(2)) { %>
-                        <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
-                        <% } %>
-                 
-             
+                <% String sid = request.getParameter("id");
+                    int x = Integer.parseInt(sid);
+                    Model.Eksponaty ek = eksponat.getEksponat(x);
+
+
+                %>     
+
+
+                <p><% out.print(ek.getNazwa()); %></p>
+                <p><% out.print(ek.getLoklaizacja().getNazwa()); %></p>
+                <p><% out.print(ek.getKategoria().getNazwa()); %></p>
+                <p><% out.print(ek.getPooducent().getNazwa()); %></p>
+                <p><% out.print(ek.getOpis()); %></p>
+                <p><% out.print(ek.getRokpow()); %></p>
+                <p><% out.print(ek.getRokzak()); %></p>
+
+                <% if (session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
+                <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
+
+                <form action="remove_ekspo" method="POST">
+                    <input class="d-none" type="text" name="remove_ekspo" value="<% out.print(ek.getIdEksponat());%>" />
+                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                </form>
+                <% } %>
+
+
             </jsp:useBean>
 
         </section>
 
         <%@include file="footer.jsp" %>
+        <% }%>

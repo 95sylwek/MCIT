@@ -62,7 +62,7 @@
 
 
         <section>
-            <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="request">
+            <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="page">
 
                 <ol>
                     <% String sid = request.getParameter("id");
@@ -79,3 +79,4 @@
         </section>
 
         <%@include file="footer.jsp" %>
+ <% }%>

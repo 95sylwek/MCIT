@@ -169,4 +169,4 @@
 
         <!-- Footer -->
         <%@include file="footer.jsp" %>
-        <%}%>
+        <% } %>

@@ -15,25 +15,23 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Radek
+ * @author Sylwester
  */
-@WebServlet("/show_edit")
-public class show_edit extends HttpServlet implements java.io.Serializable{
-    
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+@WebServlet("/remove_producent")
+public class remove_producent extends HttpServlet implements java.io.Serializable{
+       protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
         
  
-        
-        String id = request.getParameter("edit_id_user");
-        HttpSession session = request.getSession();
-        System.err.println(id);
-        session.setAttribute("edit_id_user", id);
-        
-         response.sendRedirect("all_ekspo.jsp");
-  
-        
-        
-    }
+      try{  
+        String id = request.getParameter("remove_producent");
+        Producenci pro = new Producenci();
+        pro.remove(id);
+              } catch (Exception e) {
+            System.err.println(e.getMessage());
+            response.sendRedirect("error.jsp");
+        }
+    response.sendRedirect("all_ekspo.jsp");
+}
 }

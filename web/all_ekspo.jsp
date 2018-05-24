@@ -122,7 +122,10 @@
                                                     <input class="d-none" type="text" name="edit_id_user" value="<% out.print(cos.getIdOsoba());%>" />
                                                     <button type="submit" class="btn btn-default">Edytuj</button>
                                                 </form>
+                                                    <form action="remove_user" method="POST">
+                                                  <input class="d-none" type="text" name="remove_id_user" value="<% out.print(cos.getIdOsoba());%>" />
                                                 <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>        

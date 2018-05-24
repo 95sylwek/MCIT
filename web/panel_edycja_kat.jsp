@@ -94,8 +94,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </jsp:useBean>                            
-                    </form>
+                        </form>
+                        <form action="remove_kategoria" method="POST">
+                            <input class="d-none" type="text" name="remove_kategoria" value="<% out.print(kat.getIdKategoria());%>" />
+                            <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                        </form>
+                    </jsp:useBean>                            
+
                 </div>
             </div>
         </section>
