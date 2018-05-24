@@ -217,13 +217,9 @@
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(wyd.getIdLokalizacja());%>">
+                                    <a    href=" panel_edycja_lok.jsp?id=<% out.print(wyd.getIdLokalizacja()); %>"><%out.print(wyd.getNazwa()); %> </a>
 
-                                        <div class="portfolio-caption">
-                                            <h4><% out.print(wyd.getNazwa()); %></h4>                                 
-
-                                        </div>
-                                    </a>
+                       
 
                                 </div>
 
