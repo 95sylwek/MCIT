@@ -131,32 +131,35 @@ public class Lokalizacja {
     public String getDataOd(String sid) throws Exception {
         int id = Integer.parseInt(sid);
         String data = null;
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+            EntityManager em = factory.createEntityManager();
+            em.getTransaction().begin();
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
-        EntityManager em = factory.createEntityManager();
-        em.getTransaction().begin();
+            Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+            Integer day = lokalizacja.getDataod().getDate();
+            String sday = day.toString();
+            if (sday.length() == 1) {
+                sday = "0" + sday;
+            }
 
-        Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
-        Integer day = lokalizacja.getDataod().getDate();
-        String sday = day.toString();
-        if (sday.length() == 1) {
-            sday = "0" + sday;
+            Integer mouth = lokalizacja.getDataod().getMonth() + 1;
+            String smouth = mouth.toString();
+            if (smouth.length() == 1) {
+                smouth = "0" + smouth;
+            }
+            Integer year = lokalizacja.getDataod().getYear() + 1900;
+            String syear = year.toString();
+
+            data = syear + "-" + smouth + "-" + sday;
+            em.getTransaction().commit();
+            em.close();
+            return data;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return "brak";
         }
-
-        Integer mouth = lokalizacja.getDataod().getMonth() + 1;
-        String smouth = mouth.toString();
-        if (smouth.length() == 1) {
-            smouth = "0" + smouth;
-        }
-        Integer year = lokalizacja.getDataod().getYear() + 1900;
-        String syear = year.toString();
-
-        data = syear + "-" + smouth + "-" + sday;
-
-        em.getTransaction().commit();
-        em.close();
-
-        return data;
     }
 
     public void setDataOd(String sid, Date dateFrom) throws Exception {
@@ -177,32 +180,36 @@ public class Lokalizacja {
     public String getDataDo(String sid) throws Exception {
         int id = Integer.parseInt(sid);
         String data = null;
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+            EntityManager em = factory.createEntityManager();
+            em.getTransaction().begin();
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
-        EntityManager em = factory.createEntityManager();
-        em.getTransaction().begin();
+            Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+            Integer day = lokalizacja.getDatado().getDate();
+            String sday = day.toString();
+            if (sday.length() == 1) {
+                sday = "0" + sday;
+            }
 
-        Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
-        Integer day = lokalizacja.getDatado().getDate();
-        String sday = day.toString();
-        if (sday.length() == 1) {
-            sday = "0" + sday;
+            Integer mouth = lokalizacja.getDatado().getMonth() + 1;
+            String smouth = mouth.toString();
+            if (smouth.length() == 1) {
+                smouth = "0" + smouth;
+            }
+            Integer year = lokalizacja.getDatado().getYear() + 1900;
+            String syear = year.toString();
+
+            data = syear + "-" + smouth + "-" + sday;
+
+            em.getTransaction().commit();
+            em.close();
+            return data;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return "brak";
         }
-
-        Integer mouth = lokalizacja.getDatado().getMonth() + 1;
-        String smouth = mouth.toString();
-        if (smouth.length() == 1) {
-            smouth = "0" + smouth;
-        }
-        Integer year = lokalizacja.getDatado().getYear() + 1900;
-        String syear = year.toString();
-
-        data = syear + "-" + smouth + "-" + sday;
-
-        em.getTransaction().commit();
-        em.close();
-
-        return data;
     }
 
     public void setDataDo(String sid, Date dateTo) throws Exception {
@@ -284,6 +291,6 @@ public class Lokalizacja {
     }
 
     public static void main(String[] args) {
-       
+
     }
 }

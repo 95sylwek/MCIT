@@ -64,6 +64,7 @@ public class Kategorie {
         em.close();
 
         return name;
+        
     }
 
     public void setNazwa(String sid, String name) throws Exception {
