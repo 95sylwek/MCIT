@@ -71,31 +71,34 @@
 
                 <div class="modal-body">
                     <form class="form-horizontal" action="#">
-                        <jsp:useBean id="user" class="Kontroler.Lokalizacja" scope="request">                           
-                            <% String id = session.getAttribute("edit_id_user").toString(); %>                           
+                        <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="request">                           
+                            <% String sid = request.getParameter("id"); 
+                        
+                    
+                        Model.Loklaizacja lok =lokalizacja.getLoklaizacja(sid); %>                           
 
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(user.getNazwa(id)); %>" > </p>
+                                    <p> <input type="text" class="form-control" name="nazwa" value="<% out.print(lok.getNazwa()); %>" > </p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="nazwisko">Opis:</label>
-                                    <input type="text" class="form-control" name="nazwisko" value="<% out.print(user.getOpis(id)); %>">
+                                    <input type="text" class="form-control" name="opis" value="<% out.print(lok.getOpis()); %>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="adres">Data od:</label>
-                                    <input type="date" class="form-control" name="adres" value="<% out.print(user.getDataOd(id)); %>">
+                                    <input type="date" class="form-control" name="dataod" value="<% out.print(lokalizacja.getDataOd(sid)); %>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="nr_tel">Data do:</label>
-                                    <input type="date" class="form-control" name="nazwisko" value="<% out.print(user.getDataDo(id)); %>">
+                                    <input type="date" class="form-control" name="datado" value="<% out.print(lokalizacja.getDataDo(sid)); %>">
                                 </div>
                             </div>
                             
