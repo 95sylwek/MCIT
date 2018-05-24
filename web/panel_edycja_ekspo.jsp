@@ -136,19 +136,20 @@
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Opis:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getOpis()); %>" > </p>
+                                    <p> <input type="textarea" class="form-control" name="imie" value="<% out.print(ek.getOpis()); %>" > </p>
                                 </div>
                             </div>
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Rok pow:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getRokpow()); %>" > </p>
+                                    
+                                    <p> <input type="date" class="form-control" name="imie" value="<% out.print(eksponat.getRokPow(sid)); %>" > </p>
                                 </div>
                             </div>
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Rok zak:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getRokzak()); %>" > </p>
+                                    <p> <input type="date" class="form-control" name="imie" value="<% out.print(eksponat.getRokZak(sid)); %>" > </p>
                                 </div>
                             </div>
                                                       
