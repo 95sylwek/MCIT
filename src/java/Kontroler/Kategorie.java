@@ -150,6 +150,22 @@ public class Kategorie {
         em.getTransaction().commit();
         em.close();
     }
+     
+     public void edit(String sid, String name, String opis) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Kategorie kategoria= em.find(Model.Kategorie.class, id);
+        kategoria.setNazwa(name);
+        kategoria.setOpis(opis);
+
+        em.persist(kategoria);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         try {

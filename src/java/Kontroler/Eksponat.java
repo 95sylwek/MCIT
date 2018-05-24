@@ -282,6 +282,26 @@ public class Eksponat {
         em.getTransaction().commit();
         em.close();
     }
+    
+    public void edit(String sid, String nazwa, String opis, Date rokPow, Date rokZak, Model.Kategorie kategoria, Model.Loklaizacja loklaizacja, Model.Producenci pooducent) throws Exception{
+        int id = Integer.parseInt(sid);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Eksponaty eksponat = em.find(Model.Eksponaty.class, id);
+        eksponat.setNazwa(nazwa);
+        eksponat.setOpis(opis);
+        eksponat.setRokpow(rokPow);
+        eksponat.setRokzak(rokZak);
+        eksponat.setKategoria(kategoria);
+        eksponat.setLoklaizacja(loklaizacja);
+        eksponat.setPooducent(pooducent);
+        
+        em.persist(eksponat);
+        em.getTransaction().commit();
+        em.close();        
+    }
 
     public static void main(String[] args) {
        

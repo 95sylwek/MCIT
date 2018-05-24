@@ -228,6 +228,24 @@ public class Lokalizacja {
         em.getTransaction().commit();
         em.close();
     }
+    
+    public void edit (String sid, String name, String descrip, Date dateFrom, Date dateTo) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+        lokalizacja.setNazwa(name);
+        lokalizacja.setOpis(descrip);
+        lokalizacja.setDatado(dateFrom);
+        lokalizacja.setDatado(dateTo);
+
+        em.persist(lokalizacja);
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public static void main(String[] args) {
         try{ 

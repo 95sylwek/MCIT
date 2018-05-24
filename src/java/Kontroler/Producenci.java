@@ -215,6 +215,24 @@ public class Producenci {
         em.close();
     }
     
+    public void edit(String sid, String nazwa, String opis, Date rokPow, Date rokZak) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Producenci poroducent = em.find(Model.Producenci.class, id);
+        poroducent.setNazwa(nazwa);
+        poroducent.setOpis(opis);
+        poroducent.setRokpow(rokPow);
+        poroducent.setRokzak(rokZak);        
+
+        em.persist(poroducent);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
     public static void main(String[] args) {
         
     }

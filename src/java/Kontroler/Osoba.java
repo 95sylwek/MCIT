@@ -364,6 +364,32 @@ public class Osoba {
         return osoba;
     }
     
+    public void edit(String sid, String imie, String nazwisko, String adres, String telefon, String haslo, String email, Model.Stanowisko stanowisko) throws Exception {
+        int id =Integer.parseInt(sid);
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        
+
+        Model.Osoba osoba = em.find(Model.Osoba.class, id);
+        osoba.setImie(imie);
+        osoba.setNazwisko(nazwisko);
+        osoba.setAdres(adres);
+        osoba.setTelefon(telefon);
+        if (!osoba.getHaslo().equals(haslo)){
+            String password = encryptPassword(haslo);
+            osoba.setHaslo(password);
+        }
+        osoba.setEmail(email);
+        osoba.setStanowisko(stanowisko);
+        
+        
+        em.persist(osoba);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
     
 
     public static void main(String[] args) {
