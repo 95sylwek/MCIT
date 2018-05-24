@@ -86,21 +86,50 @@
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Lokalizacja:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getLoklaizacja().getNazwa()); %>" > </p>
+                                    <select name="lokalizacja" class="form-control"  >
+                                 <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="request">
+                                     <option value=""><%  out.print(ek.getLoklaizacja().getNazwa()); %></option>
+                                        <% for (Model.Loklaizacja lok : lokalizacja.getLoklaizacje()) { 
+                                            if (lok.getIdLokalizacja() != ek.getLoklaizacja().getIdLokalizacja()) {
+                                        %>
+                                        <option value="<% out.print(lok.getIdLokalizacja()); %>"><% out.print(lok.getNazwa());%> </option>
+                                        <% } } %>
+                                    </jsp:useBean>
+                                        </select>                                      
                                 </div>
                             </div>
                                 
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Kategoria:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getKategoria().getNazwa()); %>" > </p>
+                                    <select name="kategoria" class="form-control"  >
+                                    <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="request">
+                                     <option value=""><%  out.print(ek.getKategoria().getNazwa()); %></option>
+                                     <% for (Model.Kategorie kate : kategoria.getKategorie()) {
+                                                    if (kate.getIdKategoria() != ek.getKategoria().getIdKategoria()) {
+                                            %> 
+                                        <option value="<% out.print(kate.getIdKategoria()); %>"><% out.print(kate.getNazwa());%> </option>
+                                        <% }
+                                                }%>
+                                    </jsp:useBean>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Producent:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getPooducent().getNazwa()); %>" > </p>
+                                    <select name="kategoria" class="form-control"  >
+                                    <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">
+                                     <option value=""><%  out.print(ek.getPooducent().getNazwa()); %></option>
+                                     <% for (Model.Producenci produ : producent.getProducenci()) {
+                                                    if (produ.getIdProducent() != ek.getPooducent().getIdProducent()) {
+                                            %> 
+                                        <option value="<% out.print(produ.getIdProducent()); %>"><% out.print(produ.getNazwa());%> </option>
+                                        <% }
+                                                }%>
+                                    </jsp:useBean>
+                                    </select>
                                 </div>
                             </div>
                              

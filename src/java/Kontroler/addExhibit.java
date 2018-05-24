@@ -5,7 +5,7 @@
  */
 package Kontroler;
 
-import Model.Eksponaty_;
+import Model.Eksponaty;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
