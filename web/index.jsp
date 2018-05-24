@@ -152,11 +152,9 @@
                       <% out.print(cos.getOpis()); %>
                   </p>
                   <p class="item-intro text-muted"></p>
-            
-                 
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                   
-                    Przejdź do eksponatów </button>
+
+                  <a href=" panel_przej_ekspo.jsp?id=<% out.print(cos.getIdKategoria()); %>">Wyświetl eksponaty tej kategorii </a>
+                  
                 </div>
               </div>
             </div>

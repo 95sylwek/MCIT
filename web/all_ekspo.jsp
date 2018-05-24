@@ -40,7 +40,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">MHKI</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.jsp">MHKI</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
@@ -52,7 +52,7 @@
                             <a class="nav-link js-scroll-trigger" href="#uzytkownik">Edytuj użytkownika</a>
                         </li>
                         <% } %>
-                        <% if (session.getAttribute("idStanowisko").equals(3) || session.getAttribute("idStanowisko").equals(2)) { %>
+                        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#eksponat">Edytuj eksponat</a>
                         </li>
@@ -93,6 +93,8 @@
         </header>
 
         <!--userow-->
+        <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="request">
+        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
         <section class="bg-light" id="uzytkownik">
             <div class="container">
                 <div class="row">
@@ -102,10 +104,11 @@
                     </div>
                 </div>
                 <center><div class="row">
-                        <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="request">
+                        
                             <%
                                 for (Model.Osoba cos : osoba.getOsoby()) {
                             %>
+                             <% if (((session.getAttribute("idStanowisko").equals(2)) && cos.getIdOsoba()!=1) || (session.getAttribute("idStanowisko").equals(1))){ %>
 
                             <div class="form-group" > 
                                 <div class="col-sm-offset-2 col-sm-10">    
@@ -126,11 +129,13 @@
                                 </div>
                             </div> 
                             <% } %>
-                        </jsp:useBean>
+                       <% } %>
                     </div></center>
             </div>
         </section>
-
+  </jsp:useBean>
+<% } %>
+<% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Eksponaty--> 
         <section class="bg-light" id="eksponat">
             <div class="container">
@@ -164,8 +169,8 @@
             </div>
         </section>
 
-
-
+<% } %>
+<% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Producent-->
         <section id="producent" >
             <center> <div class="container">
@@ -199,7 +204,8 @@
                 </div>
             </center>
         </section>
-
+        <% } %>
+<% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Wydarzenie-->
         <section id="lokalizacja" class="bg-light">
             <center> <div class="container">
@@ -230,7 +236,8 @@
                 </div>
             </center>
         </section>
-
+        <% } %>
+<% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Kategoria-->
         <section id="kategoria" >
             <center> <div class="container">
@@ -266,7 +273,7 @@
                 </div>
             </center>
         </section>
-
+<% } %>
 
         <!-- Contact -->
         <section id="contact">

@@ -48,9 +48,11 @@
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="panel_add.jsp">Dodaj</a>
                         </li>
+                        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="all_ekspo.jsp">Edycja/usuń</a>
                         </li>
+                        <% } %>
                         <li class="nav-item">
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>

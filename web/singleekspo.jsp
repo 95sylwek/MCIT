@@ -1,5 +1,10 @@
 <%@page import="Model.Kategorie"%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
+<%
+    if ((session.getAttribute("id") == null) || (session.getAttribute("id") == "0")) {
+        response.sendRedirect("index.jsp");
+    } else {
+%>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -29,7 +34,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">MHKI</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.jsp">MHKI</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
@@ -75,7 +80,7 @@
              <p><% out.print(ek.getRokpow()); %></p>
              <p><% out.print(ek.getRokzak()); %></p>
              
-                        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
+             <% if (session.getAttribute("idStanowisko")!=null  && session.getAttribute("idStanowisko").equals(2)) { %>
                         <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
                         <% } %>
                  
