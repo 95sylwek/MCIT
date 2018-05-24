@@ -136,7 +136,7 @@
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Opis:</label>
-                                    <p> <input type="textarea" class="form-control" name="imie" value="<% out.print(ek.getOpis()); %>" > </p>
+                                    <textarea class="form-control" name="imie" > <% out.print(ek.getOpis()); %> </textarea>
                                 </div>
                             </div>
                                 <div class="form-group">

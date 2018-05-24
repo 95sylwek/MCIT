@@ -178,14 +178,14 @@
                     <center><div class="row">
                             <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">
                                 <%
-                                    for (Model.Producenci cos : producent.getProducenci()) {
+                                    for (Model.Producenci pro : producent.getProducenci()) {
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdProducent());%>">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(pro.getIdProducent());%>">
 
                                         <div class="portfolio-caption">
-                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+                                            <h4><% out.print(pro.getNazwa()); %></h4>                                 
 
                                         </div>
                                     </a>
@@ -213,14 +213,14 @@
                     <center><div class="row">
                             <jsp:useBean id="wydarzenia" class="Kontroler.Lokalizacja" scope="request">
                                 <%
-                                    for (Model.Loklaizacja cos : wydarzenia.getLoklaizacje()) {
+                                    for (Model.Loklaizacja wyd : wydarzenia.getLoklaizacje()) {
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdLokalizacja());%>">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(wyd.getIdLokalizacja());%>">
 
                                         <div class="portfolio-caption">
-                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+                                            <h4><% out.print(wyd.getNazwa()); %></h4>                                 
 
                                         </div>
                                     </a>
@@ -248,14 +248,14 @@
                     <center><div class="row">
                             <jsp:useBean id="kat" class="Kontroler.Kategorie" scope="request">
                                 <%
-                                    for (Model.Kategorie cos : kat.getKategorie()) {
+                                    for (Model.Kategorie kat : kat.getKategorie()) {
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(cos.getIdKategoria());%>">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kat.getIdKategoria());%>">
 
                                         <div class="portfolio-caption">
-                                            <h4><% out.print(cos.getNazwa()); %></h4>                                 
+                                            <h4><% out.print(kat.getNazwa()); %></h4>                                 
 
                                         </div>
                                     </a>
