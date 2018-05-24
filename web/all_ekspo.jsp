@@ -248,14 +248,14 @@
                     <center><div class="row">
                             <jsp:useBean id="kat" class="Kontroler.Kategorie" scope="request">
                                 <%
-                                    for (Model.Kategorie kat : kat.getKategorie()) {
+                                    for (Model.Kategorie kate : kat.getKategorie()) {
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kat.getIdKategoria());%>">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kate.getIdKategoria());%>">
 
                                         <div class="portfolio-caption">
-                                            <h4><% out.print(kat.getNazwa()); %></h4>                                 
+                                            <h4><% out.print(kate.getNazwa()); %></h4>                                 
 
                                         </div>
                                     </a>
