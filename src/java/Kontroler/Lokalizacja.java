@@ -66,7 +66,7 @@ public class Lokalizacja {
 
     public String getNazwa(String sid) throws Exception {
         String name = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -82,8 +82,8 @@ public class Lokalizacja {
     }
 
     public void setNazwa(String sid, String name) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -97,7 +97,7 @@ public class Lokalizacja {
     }
 
     public String getOpis(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
         String descrip = "";
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -114,8 +114,8 @@ public class Lokalizacja {
     }
 
     public void setOpis(String sid, String descrip) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -128,26 +128,40 @@ public class Lokalizacja {
         em.close();
     }
 
-    public Date getDataOd(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
-        Date dateFrom = null;
+    public String getDataOd(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
+        String data = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
         Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
-        dateFrom = lokalizacja.getDataod();
+        Integer day = lokalizacja.getDataod().getDate();
+        String sday = day.toString();
+        if (sday.length() == 1) {
+            sday = "0" + sday;
+        }
+
+        Integer mouth = lokalizacja.getDataod().getMonth() + 1;
+        String smouth = mouth.toString();
+        if (smouth.length() == 1) {
+            smouth = "0" + smouth;
+        }
+        Integer year = lokalizacja.getDataod().getYear() + 1900;
+        String syear = year.toString();
+
+        data = syear + "-" + smouth + "-" + sday;
 
         em.getTransaction().commit();
         em.close();
 
-        return dateFrom;
+        return data;
     }
 
     public void setDataOd(String sid, Date dateFrom) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -160,25 +174,39 @@ public class Lokalizacja {
         em.close();
     }
 
-    public Date getDataDo(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
-        Date dateTo = null;
+    public String getDataDo(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
+        String data = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
         Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
-        dateTo = lokalizacja.getDatado();
+        Integer day = lokalizacja.getDatado().getDate();
+        String sday = day.toString();
+        if (sday.length() == 1) {
+            sday = "0" + sday;
+        }
+
+        Integer mouth = lokalizacja.getDatado().getMonth() + 1;
+        String smouth = mouth.toString();
+        if (smouth.length() == 1) {
+            smouth = "0" + smouth;
+        }
+        Integer year = lokalizacja.getDatado().getYear() + 1900;
+        String syear = year.toString();
+
+        data = syear + "-" + smouth + "-" + sday;
 
         em.getTransaction().commit();
         em.close();
 
-        return dateTo;
+        return data;
     }
 
     public void setDataDo(String sid, Date dateTo) throws Exception {
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -204,7 +232,7 @@ public class Lokalizacja {
     }
 
     public Model.Loklaizacja getLoklaizacja(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
@@ -214,33 +242,41 @@ public class Lokalizacja {
 
         return lokalizacja;
     }
-    
-    public void remove(String sid) throws Exception{
-        int id =Integer.parseInt(sid);
-        
-       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
-        EntityManager em = factory.createEntityManager();
-        em.getTransaction().begin();
 
-       Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+    public void remove(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
 
-        em.remove(lokalizacja);
-        em.getTransaction().commit();
-        em.close();
-    }
-    
-    public void edit (String sid, String name, String descrip, Date dateFrom, Date dateTo) throws Exception {
-        int id =Integer.parseInt(sid);
-        
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
         Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
-        lokalizacja.setNazwa(name);
-        lokalizacja.setOpis(descrip);
-        lokalizacja.setDatado(dateFrom);
-        lokalizacja.setDatado(dateTo);
+
+        em.remove(lokalizacja);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void edit(String sid, String name, String descrip, Date dateFrom, Date dateTo) throws Exception {
+        int id = Integer.parseInt(sid);
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+
+        Model.Loklaizacja lokalizacja = em.find(Model.Loklaizacja.class, id);
+        if (name != null) {
+            lokalizacja.setNazwa(name);
+        }
+        if (descrip != null) {
+            lokalizacja.setOpis(descrip);
+        }
+        if (dateFrom != null) {
+            lokalizacja.setDatado(dateFrom);
+        }
+        if (dateTo != null) {
+            lokalizacja.setDatado(dateTo);
+        }
 
         em.persist(lokalizacja);
         em.getTransaction().commit();
@@ -248,13 +284,6 @@ public class Lokalizacja {
     }
 
     public static void main(String[] args) {
-        try{ 
-                   Lokalizacja lokalizacja =new Lokalizacja ();
-                   for (Model.Loklaizacja cos : lokalizacja.getLoklaizacje()){
-                       System.out.print(cos.getNazwa());
-                   }
-        }catch(Exception e){
-            
-                   }
+       
     }
 }

@@ -66,7 +66,7 @@ public class Osoba {
 
     public String getImie(String sid) throws Exception {
         String imie = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -83,8 +83,8 @@ public class Osoba {
     }
 
     public void setImie(String sid, String imie) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -99,7 +99,7 @@ public class Osoba {
 
     public String getNazwisko(String sid) throws Exception {
         String nazwisko = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -116,8 +116,8 @@ public class Osoba {
     }
 
     public void setNazwisko(String sid, String nazwisko) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -132,7 +132,7 @@ public class Osoba {
 
     public String getAdres(String sid) throws Exception {
         String adres = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -149,7 +149,7 @@ public class Osoba {
     }
 
     public void setAdres(String sid, String adres) throws Exception {
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -164,7 +164,7 @@ public class Osoba {
 
     public String getTelefon(String sid) throws Exception {
         String telefon = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -181,8 +181,8 @@ public class Osoba {
     }
 
     public void setTelefon(String sid, String telefon) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -197,7 +197,7 @@ public class Osoba {
 
     private String getHaslo(String sid) throws Exception {
         String haslo = "";
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -213,8 +213,8 @@ public class Osoba {
     }
 
     public void setHaslo(String sid, String haslo) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -230,7 +230,7 @@ public class Osoba {
 
     public String getEmail(String sid) throws Exception {
         String email = null;
-        int id =Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
@@ -247,8 +247,8 @@ public class Osoba {
     }
 
     public void setEmail(String sid, String email) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
@@ -260,25 +260,25 @@ public class Osoba {
         em.getTransaction().commit();
         em.close();
     }
-    
+
     public Model.Stanowisko getStanowisko(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
-        
+
         Model.Osoba osoba = em.find(Model.Osoba.class, id);
-        Model.Stanowisko stanowisko = osoba.getStanowisko();        
-        
+        Model.Stanowisko stanowisko = osoba.getStanowisko();
+
         em.close();
-        
+
         return stanowisko;
     }
-    
-    public void remove(String sid) throws Exception{
-        int id =Integer.parseInt(sid);
-        
-       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+
+    public void remove(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
@@ -324,14 +324,14 @@ public class Osoba {
         Query q = em.createQuery("SELECT o FROM Osoba o WHERE o.email = '" + email + "'");
 
         if (q.getSingleResult() != null) {
-            
+
             osoba = (Model.Osoba) q.getSingleResult();
             if (!osoba.getHaslo().equals(password)) {
                 osoba = null;
             }
         } else {
             osoba = null;
-        }        
+        }
 
         em.getTransaction().commit();
         em.close();
@@ -347,13 +347,13 @@ public class Osoba {
         List osoby = (List) q.getResultList();
 
         em.close();
-        
+
         return osoby;
     }
-    
+
     public Model.Osoba getOsoba(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
 
@@ -363,42 +363,48 @@ public class Osoba {
 
         return osoba;
     }
-    
+
     public void edit(String sid, String imie, String nazwisko, String adres, String telefon, String haslo, String email, Model.Stanowisko stanowisko) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
-        
 
         Model.Osoba osoba = em.find(Model.Osoba.class, id);
-        osoba.setImie(imie);
-        osoba.setNazwisko(nazwisko);
-        osoba.setAdres(adres);
-        osoba.setTelefon(telefon);
-        if (!osoba.getHaslo().equals(haslo)){
+        if (imie != null) {
+            osoba.setImie(imie);
+        }
+        if (nazwisko != null) {
+            osoba.setNazwisko(nazwisko);
+        }
+        if (adres != null) {
+            osoba.setAdres(adres);
+        }
+        if (telefon != null) {
+            osoba.setTelefon(telefon);
+        }
+        if (!osoba.getHaslo().equals(haslo) && haslo != null) {
             String password = encryptPassword(haslo);
             osoba.setHaslo(password);
         }
-        osoba.setEmail(email);
-        osoba.setStanowisko(stanowisko);
-        
-        
+        if (email != null) {
+            osoba.setEmail(email);
+        }
+        if (stanowisko != null) {
+            osoba.setStanowisko(stanowisko);
+        }
+
         em.persist(osoba);
         em.getTransaction().commit();
         em.close();
     }
-    
-    
 
     public static void main(String[] args) {
         String password = "CosTam12";
-        try {           
-          //  Osoba osoba = new Osoba("wolontariusz", "wolontariusz", "wolontariusz", "wolontariusz@wolontariusz.pl");
-            
-            
-            
+        try {
+            //  Osoba osoba = new Osoba("wolontariusz", "wolontariusz", "wolontariusz", "wolontariusz@wolontariusz.pl");
+
         } catch (Exception e) {
         }
 

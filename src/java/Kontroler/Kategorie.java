@@ -35,13 +35,13 @@ public class Kategorie {
         em.getTransaction().commit();
         em.close();
     }
-    
+
     public Kategorie(String name, String opis) throws Exception {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Kategorie kategoria = new Model.Kategorie(name,opis);
+        Model.Kategorie kategoria = new Model.Kategorie(name, opis);
         em.persist(kategoria);
 
         em.persist(kategoria);
@@ -80,8 +80,9 @@ public class Kategorie {
         em.getTransaction().commit();
         em.close();
     }
-        public String getOpis(String sid) throws Exception {
-        int id =Integer.parseInt(sid);
+
+    public String getOpis(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
         String descrip = "";
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -96,15 +97,15 @@ public class Kategorie {
 
         return descrip;
     }
-    
-       public void setOpis(String sid, String descrip) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+
+    public void setOpis(String sid, String descrip) throws Exception {
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Kategorie kategoria= em.find(Model.Kategorie.class, id);
+        Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
         kategoria.setOpis(descrip);
 
         em.persist(kategoria);
@@ -136,31 +137,35 @@ public class Kategorie {
 
         return kategoria;
     }
-    
-     public void remove(String sid) throws Exception{
-        int id =Integer.parseInt(sid);
-        
-       EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+
+    public void remove(String sid) throws Exception {
+        int id = Integer.parseInt(sid);
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-       Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
+        Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
 
         em.remove(kategoria);
         em.getTransaction().commit();
         em.close();
     }
-     
-     public void edit(String sid, String name, String opis) throws Exception {
-        int id =Integer.parseInt(sid);
-        
+
+    public void edit(String sid, String name, String opis) throws Exception {
+        int id = Integer.parseInt(sid);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Model.Kategorie kategoria= em.find(Model.Kategorie.class, id);
-        kategoria.setNazwa(name);
-        kategoria.setOpis(opis);
+        Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
+        if (name != null) {
+            kategoria.setNazwa(name);
+        }
+        if (opis != null) {
+            kategoria.setOpis(opis);
+        }
 
         em.persist(kategoria);
         em.getTransaction().commit();
@@ -171,7 +176,7 @@ public class Kategorie {
         try {
             Kategorie kategoria = new Kategorie();
             kategoria.getKategoria("1").getEksponatyCollection();
-            for( Model.Eksponaty row :kategoria.getKategoria("1").getEksponatyCollection()){
+            for (Model.Eksponaty row : kategoria.getKategoria("1").getEksponatyCollection()) {
                 System.err.println(row.getNazwa());
             }
         } catch (Exception e) {

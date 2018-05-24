@@ -149,17 +149,16 @@ public class Eksponat {
         if (sday.length() == 1) {
             sday = "0" + sday;
         }
-        
-        Integer mouth = eksponat.getRokpow().getMonth()+1;
+
+        Integer mouth = eksponat.getRokpow().getMonth() + 1;
         String smouth = mouth.toString();
         if (smouth.length() == 1) {
             smouth = "0" + smouth;
         }
-        Integer year = eksponat.getRokpow().getYear()+1900;
+        Integer year = eksponat.getRokpow().getYear() + 1900;
         String syear = year.toString();
-        
-        data = syear+"-"+smouth+"-"+sday;
-        
+
+        data = syear + "-" + smouth + "-" + sday;
 
         em.getTransaction().commit();
         em.close();
@@ -183,7 +182,7 @@ public class Eksponat {
     }
 
     public String getRokZak(String sid) throws Exception {
-         int id = Integer.parseInt(sid);
+        int id = Integer.parseInt(sid);
         String data = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
@@ -196,17 +195,16 @@ public class Eksponat {
         if (sday.length() == 1) {
             sday = "0" + sday;
         }
-        
-        Integer mouth = eksponat.getRokzak().getMonth()+1;
+
+        Integer mouth = eksponat.getRokzak().getMonth() + 1;
         String smouth = mouth.toString();
         if (smouth.length() == 1) {
             smouth = "0" + smouth;
         }
-        Integer year = eksponat.getRokzak().getYear()+1900;
+        Integer year = eksponat.getRokzak().getYear() + 1900;
         String syear = year.toString();
-        
-        data = syear+"-"+smouth+"-"+sday;
-        
+
+        data = syear + "-" + smouth + "-" + sday;
 
         em.getTransaction().commit();
         em.close();
@@ -282,28 +280,42 @@ public class Eksponat {
         em.getTransaction().commit();
         em.close();
     }
-    
-    public void edit(String sid, String nazwa, String opis, Date rokPow, Date rokZak, Model.Kategorie kategoria, Model.Loklaizacja loklaizacja, Model.Producenci pooducent) throws Exception{
+
+    public void edit(String sid, String nazwa, String opis, Date rokPow, Date rokZak, Model.Kategorie kategoria, Model.Loklaizacja loklaizacja, Model.Producenci pooducent) throws Exception {
         int id = Integer.parseInt(sid);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
         Model.Eksponaty eksponat = em.find(Model.Eksponaty.class, id);
-        eksponat.setNazwa(nazwa);
-        eksponat.setOpis(opis);
-        eksponat.setRokpow(rokPow);
-        eksponat.setRokzak(rokZak);
-        eksponat.setKategoria(kategoria);
-        eksponat.setLoklaizacja(loklaizacja);
-        eksponat.setPooducent(pooducent);
-        
+        if (nazwa != null) {
+            eksponat.setNazwa(nazwa);
+        }
+        if (opis != null) {
+            eksponat.setOpis(opis);
+        }
+        if (rokPow != null) {
+            eksponat.setRokpow(rokPow);
+        }
+        if (rokZak != null) {
+            eksponat.setRokzak(rokZak);
+        }
+        if (kategoria != null) {
+            eksponat.setKategoria(kategoria);
+        }
+        if (loklaizacja != null) {
+            eksponat.setLoklaizacja(loklaizacja);
+        }
+        if (pooducent != null) {
+            eksponat.setPooducent(pooducent);
+        }
+
         em.persist(eksponat);
         em.getTransaction().commit();
-        em.close();        
+        em.close();
     }
 
     public static void main(String[] args) {
-       
+
     }
 }
