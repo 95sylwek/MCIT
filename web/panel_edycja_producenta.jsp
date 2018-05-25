@@ -70,12 +70,12 @@
                 </div>
 
                 <div class="modal-body">
-                    
+                    <form class="form-horizontal" action="edit_producenta" method="post">
                         <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">                           
                             <% String sid = request.getParameter("id");
                                 int az = Integer.parseInt(sid);
                                 Model.Producenci uk = producent.getProducent(sid); %>                           
-
+                    <p> <input type="text" class="form-control d-none" name="id" value="<%out.print(sid);%>" > </p>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>
@@ -107,14 +107,17 @@
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="col-lg-12 text-center">
                                         <button type="submit" class="btn btn-default">Edytuj eksponat</button>
-                                                        <form action="remove_producent" method="POST">
-                    <input class="d-none" type="text" name="remove_producent" value="<% out.print(uk.getIdProducent());%>" />
-                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
-                </form>
+                           
                                     </div>
                                 </div>
                             </div>
-                        </jsp:useBean>                            
+                    </form>
+                                                             <form action="remove_producent" method="POST">
+                    <input class="d-none" type="text" name="remove_producent" value="<% out.print(uk.getIdProducent());%>" />
+                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                </form>
+                        </jsp:useBean>    
+                        
                    
                 </div>
             </div>

@@ -70,13 +70,13 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="edit_lokalizacji" method="post">
                         <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="request">                           
                             <% String sid = request.getParameter("id"); 
                         
                     
                         Model.Loklaizacja lok =lokalizacja.getLoklaizacja(sid); %>                           
-
+<p> <input type="text" class="form-control d-none" name="id" value="<%out.print(sid);%>" > </p>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>

@@ -70,11 +70,12 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="edit_kategorii" method="post">
                         <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="request">                           
                             <% String sid = request.getParameter("id");
                                 int x = Integer.parseInt(sid);
                                 Model.Kategorie kat = kategoria.getKategoria(sid); %> 
+                                <p> <input type="text" class="form-control d-none" name="id" value="<%out.print(sid);%>" > </p>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>

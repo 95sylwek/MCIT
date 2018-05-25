@@ -70,16 +70,17 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="edit_eksponat" method="post">
                         <jsp:useBean id="eksponat" class="Kontroler.Eksponat" scope="request">                           
                             <% String sid = request.getParameter("id"); 
                     int x= Integer.parseInt(sid);
-                          Model.Eksponaty ek = eksponat.getEksponat(x); %>                           
+                          Model.Eksponaty ek = eksponat.getEksponat(x); %>
+                          <p> <input type="text" class="form-control d-none" name="id" value="<%out.print(sid);%>" > </p>
 
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Nazwa:</label>
-                                    <p> <input type="text" class="form-control" name="imie" value="<% out.print(ek.getNazwa()); %>" > </p>
+                                    <p> <input type="text" class="form-control" name="nazwa" value="<% out.print(ek.getNazwa()); %>" > </p>
                                 </div>
                             </div>
                                 
@@ -88,7 +89,7 @@
                                     <label for="imie">Lokalizacja:</label>
                                     <select name="lokalizacja" class="form-control"  >
                                  <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="request">
-                                     <option value=""><%  out.print(ek.getLoklaizacja().getNazwa()); %></option>
+                                     <option value="<% out.print(ek.getLoklaizacja().getIdLokalizacja()); %>"><%  out.print(ek.getLoklaizacja().getNazwa()); %></option>
                                         <% for (Model.Loklaizacja lok : lokalizacja.getLoklaizacje()) { 
                                             if (lok.getIdLokalizacja() != ek.getLoklaizacja().getIdLokalizacja()) {
                                         %>
@@ -104,7 +105,7 @@
                                     <label for="imie">Kategoria:</label>
                                     <select name="kategoria" class="form-control"  >
                                     <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="request">
-                                     <option value=""><%  out.print(ek.getKategoria().getNazwa()); %></option>
+                                     <option value="<% out.print(ek.getKategoria().getIdKategoria()); %>"><%  out.print(ek.getKategoria().getNazwa()); %></option>
                                      <% for (Model.Kategorie kate : kategoria.getKategorie()) {
                                                     if (kate.getIdKategoria() != ek.getKategoria().getIdKategoria()) {
                                             %> 
@@ -119,37 +120,39 @@
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Producent:</label>
-                                    <select name="kategoria" class="form-control"  >
-                                    <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">
-                                     <option value=""><%  out.print(ek.getPooducent().getNazwa()); %></option>
-                                     <% for (Model.Producenci produ : producent.getProducenci()) {
+                                    <select name="producenci" class="form-control"  >
+                                    <jsp:useBean id="producenci" class="Kontroler.Producenci" scope="request">
+                                     <option value="<% out.print(ek.getPooducent().getIdProducent()); %>"><%  out.print(ek.getPooducent().getNazwa()); %></option>
+                                     <% for (Model.Producenci produ : producenci.getProducenci()) {
                                                     if (produ.getIdProducent() != ek.getPooducent().getIdProducent()) {
                                             %> 
                                         <option value="<% out.print(produ.getIdProducent()); %>"><% out.print(produ.getNazwa());%> </option>
                                         <% }
                                                 }%>
+                                                
                                     </jsp:useBean>
-                                    </select>
+                                        </select>
+                                    
                                 </div>
                             </div>
                              
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Opis:</label>
-                                    <textarea class="form-control" name="imie" > <% out.print(ek.getOpis()); %> </textarea>
+                                    <textarea class="form-control" name="opis" > <% out.print(ek.getOpis()); %> </textarea>
                                 </div>
                             </div>
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Rok pow:</label>
                                     
-                                    <p> <input type="date" class="form-control" name="imie" value="<% out.print(eksponat.getRokPow(sid)); %>" > </p>
+                                    <p> <input type="date" class="form-control" name="rokpow" value="<% out.print(eksponat.getRokPow(sid)); %>" > </p>
                                 </div>
                             </div>
                                 <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="imie">Rok zak:</label>
-                                    <p> <input type="date" class="form-control" name="imie" value="<% out.print(eksponat.getRokZak(sid)); %>" > </p>
+                                    <p> <input type="date" class="form-control" name="rokzakpro" value="<% out.print(eksponat.getRokZak(sid)); %>" > </p>
                                 </div>
                             </div>
                                                       
@@ -160,8 +163,9 @@
                                     </div>
                                 </div>
                             </div>
+                                </form>
                         </jsp:useBean>                            
-                    </form>
+                    
                 </div>
             </div>
         </section>
