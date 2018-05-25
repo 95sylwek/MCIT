@@ -372,29 +372,28 @@ public class Osoba {
         em.getTransaction().begin();
 
         Model.Osoba osoba = em.find(Model.Osoba.class, id);
-        if (imie != null) {
+        if (imie != null && imie != "") {
             osoba.setImie(imie);
         }
-        if (nazwisko != null) {
+        if (nazwisko != null && nazwisko != "") {
             osoba.setNazwisko(nazwisko);
         }
-        if (adres != null) {
+        if (adres != null && adres != "") {
             osoba.setAdres(adres);
         }
-        if (telefon != null) {
+        if (telefon != null && telefon != "") {
             osoba.setTelefon(telefon);
         }
-         String password = encryptPassword(haslo);
-        if (osoba.getHaslo().equals(haslo) && haslo != null) {           
-            osoba.setHaslo(password);
-            System.out.println(password);
+        if (haslo != null && haslo != "") {
+            if (!osoba.getHaslo().equals(haslo)) {
+                String password = encryptPassword(haslo);
+                osoba.setHaslo(password);
+            }
         }
-        if (email != null) {
+        if (email != null && email != "") {
             osoba.setEmail(email);
         }
-        if (stanowisko != null) {
-            osoba.setStanowisko(stanowisko);
-        }
+        osoba.setStanowisko(stanowisko);
 
         em.persist(osoba);
         em.getTransaction().commit();
