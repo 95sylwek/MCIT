@@ -64,7 +64,7 @@ public class Kategorie {
         em.close();
 
         return name;
-        
+
     }
 
     public void setNazwa(String sid, String name) throws Exception {
@@ -131,9 +131,12 @@ public class Kategorie {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
         EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
 
         Model.Kategorie kategoria = em.find(Model.Kategorie.class, id);
+        em.refresh(kategoria);
 
+        em.persist(kategoria);
         em.close();
 
         return kategoria;

@@ -29,12 +29,12 @@ public class remove_ekspo extends HttpServlet implements java.io.Serializable {
             Eksponat ek = new Eksponat();
             Kategorie kat = new Kategorie();
             Integer x = Integer.parseInt(id);
-            kat.getKategoria(x.toString()).getEksponatyCollection().remove(ek);
+            //kat.getKategoria(x.toString()).getEksponatyCollection().remove(ek);
             //ek = null;
 
             String link = "panel_przej_ekspo.jsp?id=" + ek.getEksponat(x).getKategoria().getIdKategoria();
 
-            //ek.remove(id);
+            ek.remove(id);
             response.sendRedirect(link);
         } catch (Exception e) {
             System.err.println(e.getMessage());
