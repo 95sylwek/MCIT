@@ -31,7 +31,7 @@ public class show_edit extends HttpServlet implements java.io.Serializable{
         System.err.println(id);
         session.setAttribute("edit_id_user", id);
         
-         response.sendRedirect("all_ekspo.jsp");
+         response.sendRedirect("panel_edycja.jsp");
   
         
         

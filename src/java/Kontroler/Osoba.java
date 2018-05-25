@@ -384,9 +384,10 @@ public class Osoba {
         if (telefon != null) {
             osoba.setTelefon(telefon);
         }
-        if (!osoba.getHaslo().equals(haslo) && haslo != null) {
-            String password = encryptPassword(haslo);
+         String password = encryptPassword(haslo);
+        if (osoba.getHaslo().equals(haslo) && haslo != null) {           
             osoba.setHaslo(password);
+            System.out.println(password);
         }
         if (email != null) {
             osoba.setEmail(email);

@@ -70,9 +70,11 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <form class="form-horizontal" action="editUser" method="post">
                         <jsp:useBean id="user" class="Kontroler.Osoba" scope="request">                           
-                            <% String id = session.getAttribute("edit_id_user").toString(); %>                           
+                            <% String id = session.getAttribute("edit_id_user").toString();
+                                 %> 
+                                 <p> <input type="text" class="form-control d-none" name="id" value="<%out.print(id);%>" > </p>
 
                             <div class="form-group">
                                 <div class="col-sm-10">
@@ -95,7 +97,7 @@
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label for="nr_tel">Numer telefonu:</label>
-                                    <input type="text" class="form-control" name="nazwisko" value="<% out.print(user.getTelefon(id)); %>">
+                                    <input type="text" class="form-control" name="telefon" value="<% out.print(user.getTelefon(id)); %>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -137,8 +139,9 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </jsp:useBean>                            
-                    </form>
+                    
                 </div>
             </div>
         </section>
