@@ -51,7 +51,7 @@
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Panel edycji</div>
+                    <div class="intro-lead-in">Informacje</div>
                 </div>
             </div>
         </header>
@@ -67,27 +67,28 @@
 
                 %>     
 
-
-                <p><% out.print(ek.getNazwa()); %></p>
-                <p><% out.print(ek.getLoklaizacja().getNazwa()); %></p>
-                <p><% out.print(ek.getKategoria().getNazwa()); %></p>
-                <p><% out.print(ek.getPooducent().getNazwa()); %></p>
-                <p><% out.print(ek.getOpis()); %></p>
-                <p><% out.print(ek.getRokpow()); %></p>
-                <p><% out.print(ek.getRokzak()); %></p>
+                <center>
+                    <h4>NAZWA:</h4> <p><% out.print(ek.getNazwa()); %></p><br>
+                <h4>WYDARZENIE:</h4> <p><% out.print(ek.getLoklaizacja().getNazwa()); %></p><br>
+                <h4>KATEGORIA:</h4> <p><% out.print(ek.getKategoria().getNazwa()); %></p><br>
+                <h4>PRODUCENT:</h4> <p><% out.print(ek.getPooducent().getNazwa()); %></p><br>
+                <h4>OPIS:</h4> <p><% out.print(ek.getOpis()); %></p><br>
+                <h4>ROK POWSTANIA:</h4> <p><% out.print(ek.getRokpow()); %></p><br>
+                <h4>ROK ZAKOŃCZENIA:</h4> <p><% out.print(ek.getRokzak()); %></p>
+                
 
                 <% if (session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
                 <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
 
                 <form action="remove_ekspo" method="POST">
                     <input class="d-none" type="text" name="remove_ekspo" value="<% out.print(ek.getIdEksponat());%>" />
-                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                    <button type="submit" class="btn btn-default">Usuń</button><br><br><br>
                 </form>
                 <% } %>
 
 
             </jsp:useBean>
-
+               </center>
         </section>
 
         <%@include file="footer.jsp" %>

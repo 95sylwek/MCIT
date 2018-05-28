@@ -108,13 +108,14 @@
                                     <div class="col-lg-12 text-center">
                                         <button type="submit" class="btn btn-default">Edytuj eksponat</button>
                            
-                                    </div>
-                                </div>
-                            </div>
+                                    
                     </form>
                                                              <form action="remove_producent" method="POST">
                     <input class="d-none" type="text" name="remove_producent" value="<% out.print(uk.getIdProducent());%>" />
-                    <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                   <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                   </div>
+                                </div>
+                            </div>
                 </form>
                         </jsp:useBean>    
                         

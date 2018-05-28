@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="pl">
 
-
     <head>
 
         <meta charset="utf-8">
@@ -94,51 +93,49 @@
 
         <!--userow-->
         <jsp:useBean id="osoba" class="Kontroler.Osoba" scope="request">
-        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
-        <section class="bg-light" id="uzytkownik">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Edycja użytkowników</h2>
-                        <h3 class="section-subheading text-muted"></h3>
+            <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
+            <section class="bg-light" id="uzytkownik">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading text-uppercase">Edycja użytkowników</h2>
+                            <h3 class="section-subheading text-muted"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <%
+                            for (Model.Osoba cos : osoba.getOsoby()) {
+                        %>
+                        <% if (((session.getAttribute("idStanowisko").equals(2)) && cos.getIdOsoba() != 1) || (session.getAttribute("idStanowisko").equals(1))) { %>
+
+
+                        <div class="col-md-4 col-sm-6 portfolio-item">   
+                            <center>
+
+                                    <a ><% out.print(cos.getImie()); %></a>
+
+                             
+                                   <form action="show_edit" method="POST">
+                                       <h4><p <% out.print(cos.getImie()); %></p></h4>
+                                        <input class="d-none" type="text" name="edit_id_user" value="<% out.print(cos.getIdOsoba());%>" />
+                                         <button type="submit" class="btn btn-default">Edytuj</button>
+                                    </form> 
+                                    <form action="remove_user" method="POST">
+                                        <input class="d-none" type="text" name="remove_id_user" value="<% out.print(cos.getIdOsoba());%>" />
+                                        <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                                    </form>
+                            </center>
+                            </div>
+
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
-                <center><div class="row">
-                        
-                            <%
-                                for (Model.Osoba cos : osoba.getOsoby()) {
-                            %>
-                             <% if (((session.getAttribute("idStanowisko").equals(2)) && cos.getIdOsoba()!=1) || (session.getAttribute("idStanowisko").equals(1))){ %>
-
-                            <div class="form-group" > 
-                                <div class="col-sm-offset-2 col-sm-10">    
-
-                                    <p ><% out.print(cos.getImie()); %><p> 
-
-                                    <div class="form-group"> 
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <div class="col-lg-12 text-center">
-                                                <form action="show_edit" method="POST">
-                                                    <input class="d-none" type="text" name="edit_id_user" value="<% out.print(cos.getIdOsoba());%>" />
-                                                    <button type="submit" class="btn btn-default">Edytuj</button>
-                                                </form>
-                                                    <form action="remove_user" method="POST">
-                                                  <input class="d-none" type="text" name="remove_id_user" value="<% out.print(cos.getIdOsoba());%>" />
-                                                <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
-                                                    </form>
-                                            </div>
-                                        </div>
-                                    </div>        
-                                </div>
-                            </div> 
-                            <% } %>
-                       <% } %>
-                    </div></center>
-            </div>
-        </section>
-  </jsp:useBean>
-<% } %>
-<% if (session.getAttribute("idStanowisko").equals(2)) { %>
+            </section>
+        </jsp:useBean>
+        <% } %>
+        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Eksponaty--> 
         <section class="bg-light" id="eksponat">
             <div class="container">
@@ -152,18 +149,19 @@
                         <jsp:useBean id="eksponat" class="Kontroler.Kategorie" scope="request">
                             <%
                                 for (Model.Kategorie cos : eksponat.getKategorie()) {
-                                    
-                            %>
-                            <a href=" panel_przej_ekspo.jsp?id=<% out.print(cos.getIdKategoria()); %>"><% out.print(cos.getNazwa()); %> </a>
-<!--                                <form action="show_ekspo" method="GET">
-                                    <% //response.sendRedirect("panel_przej_ekspo.jsp"+cos.getIdKategoria()); %>
-                                    <input class="d-none" type="text" name="id_kat" value="<% out.print(cos.getIdKategoria());%>" />
-                                    <button type="submit" class="btn btn-default"><% out.print(cos.getNazwa()); %></button>
 
-                           
-                                     
-                                </form>-->
-\
+                            %>
+                            <div class="col-md-4 col-sm-6 portfolio-item">
+                                <h4> <a href=" panel_przej_ekspo.jsp?id=<% out.print(cos.getIdKategoria()); %>"><% out.print(cos.getNazwa()); %> </a></h4>
+                                <!--                                <form action="show_ekspo" method="GET">
+                                <% //response.sendRedirect("panel_przej_ekspo.jsp"+cos.getIdKategoria()); %>
+                                <input class="d-none" type="text" name="id_kat" value="<% out.print(cos.getIdKategoria());%>" />
+                                <button type="submit" class="btn btn-default"><% out.print(cos.getNazwa()); %></button>
+
+                       
+                                 
+                            </form>-->
+                            </div>
 
 
                             <% } %>
@@ -172,8 +170,8 @@
             </div>
         </section>
 
-<% } %>
-<% if (session.getAttribute("idStanowisko").equals(2)) { %>
+        <% } %>
+        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Producent-->
         <section id="producent" >
             <center> <div class="container">
@@ -190,11 +188,11 @@
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    
 
-                                        <div class="portfolio-caption">                                           
-                                            <h4>  <a href="panel_edycja_producenta.jsp?id=<% out.print(pro.getIdProducent());%>"><% out.print(pro.getNazwa()); %></h4>
-                                        </div>
+
+                                    <div class="portfolio-caption">                                           
+                                        <h4>  <a href="panel_edycja_producenta.jsp?id=<% out.print(pro.getIdProducent());%>"><% out.print(pro.getNazwa()); %></h4>
+                                    </div>
                                     </a>
 
                                 </div>
@@ -208,8 +206,8 @@
             </center>
         </section>
         <% } %>
-<% if (session.getAttribute("idStanowisko").equals(2)) { %>
-        <!--Wydarzenie-->
+        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
+        <!--Lokalizacje-->
         <section id="lokalizacja" class="bg-light">
             <center> <div class="container">
                     <div class="row">
@@ -225,9 +223,9 @@
                                 %>
 
                                 <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a    href=" panel_edycja_lok.jsp?id=<% out.print(wyd.getIdLokalizacja()); %>"><%out.print(wyd.getNazwa()); %> </a>
+                                    <h4> <a    href=" panel_edycja_lok.jsp?id=<% out.print(wyd.getIdLokalizacja()); %>"><%out.print(wyd.getNazwa()); %> </a></h4>
 
-                       
+
 
                                 </div>
 
@@ -240,87 +238,87 @@
             </center>
         </section>
         <% } %>
-<% if (session.getAttribute("idStanowisko").equals(2)) { %>
+        <% if (session.getAttribute("idStanowisko").equals(2)) { %>
         <!--Kategoria-->
-        <section id="kategoria" >
-            <center> <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-heading text-uppercase" >Edycja kategorii</h2>                        
-                        </div>
-                    </div>
-
-                    <center><div class="row">
-                            <jsp:useBean id="kat" class="Kontroler.Kategorie" scope="request">
-                                <%
-                                    for (Model.Kategorie kate : kat.getKategorie()) {
-                                %>
-
-                                <div class="col-md-4 col-sm-6 portfolio-item">
-                                    <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kate.getIdKategoria());%>">
-                   
-
-                                        <div class="portfolio-caption">
-                                            <h4> <a href=" panel_edycja_kat.jsp?id=<% out.print(kate.getIdKategoria()); %>"><% out.print(kate.getNazwa()); %> </a></h4>                                 
-
-                                        </div>
-                                    </a>
-
-                                </div>
-
-
-                                <% } %>
-                            </jsp:useBean>
-                        </div></center>
-
-                </div>
-            </center>
-        </section>
-<% } %>
-
-        <!-- Contact -->
-        <section id="contact">
+        <section class="bg-light" id="kategoria">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Kontakt</h2>
+                        <h2 class="section-heading text-uppercase">Kategorie</h2>
                         <h3 class="section-subheading text-muted"></h3>
                     </div>
                 </div>
+                <center><div class="row">
+                        <jsp:useBean id="kat" class="Kontroler.Kategorie" scope="request">
+                            <%
+                                for (Model.Kategorie kate : kat.getKategorie()) {
+                            %>
+
+                            <div class="col-md-4 col-sm-6 portfolio-item">
+                                <a class="portfolio-link" data-toggle="modal" href="#<% out.print(kate.getIdKategoria());%>">
 
 
+                                    <div class="portfolio-caption" class="portfolio-hover">
+                                        <h4> <a href=" panel_edycja_kat.jsp?id=<% out.print(kate.getIdKategoria()); %>"><% out.print(kate.getNazwa()); %> </a></h4>                                 
+
+                                    </div>
+                                </a>
+
+                            </div>
+
+
+                            <% } %>
+                        </jsp:useBean>
+                    </div></center>
             </div>
-        </section>
+        </div>
 
+    </section>
+    <% } %>
 
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; MUZEUM TEAM </span>
-                    </div>
-
-
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Kontakt</h2>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
             </div>
-        </footer>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        </div>
+    </section>
 
-        <!-- Contact form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
 
-        <!-- Custom scripts for this template -->
-        <script src="js/agency.min.js"></script>
 
-    </body>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; MUZEUM TEAM </span>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+</body>
 </html>
 <% }%>

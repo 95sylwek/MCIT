@@ -22,13 +22,13 @@
     <!-- Services -->
     <section id="services">
       <div class="container">
-        <div class="row">
+        <div class="row ">
         
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Gdzie zobaczysz nasze eksponaty?</h2>
             <h3 class="section-subheading text-muted"></h3>
           </div>
-        </div>
+            <div class="col-lg-12 text-center">
         <%
             int i=1;
                try{ 
@@ -36,10 +36,13 @@
                    for (Model.Loklaizacja cos : lokalizacja.getLoklaizacje()){   
         %>
         
-        <h4 ><% out.print(cos.getNazwa()); %></h4> 
-               <p class="text-muted"><% out.print(cos.getOpis()); %></p><br>
+        <h4><% out.print(cos.getNazwa()); %></h4> 
+        <p class="text-muted"><% out.print(cos.getOpis()); %></p>
+        <p ><% out.print(cos.getDataod()); %></p><br><br>
                <% }
                 }catch(Exception e){ out.print("pusta baza"); }%>
+            </div>
+        </div>
       </div>     
     </section>
 

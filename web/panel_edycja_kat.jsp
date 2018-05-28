@@ -92,13 +92,14 @@
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="col-lg-12 text-center">
                                         <button type="submit" class="btn btn-default">Edytuj kategorie</button>
-                                    </div>
-                                </div>
-                            </div>
+                                   
                         </form>
                         <form action="remove_kategoria" method="POST">
                             <input class="d-none" type="text" name="remove_kategoria" value="<% out.print(kat.getIdKategoria());%>" />
                             <br><button type="submit" class="btn btn-default">Usuń</button><br><br><br>
+                             </div>
+                                </div>
+                            </div>
                         </form>
                     </jsp:useBean>                            
 

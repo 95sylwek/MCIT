@@ -60,16 +60,18 @@
         <section>
             <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="page">
 
+                
                 <ol>
                     <% String sid = request.getParameter("id");
                         for (Model.Eksponaty row : kategoria.getKategoria(sid).getEksponatyCollection()) {
                             
                     %>     
 
-                    <li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"><% out.print(row.getNazwa()); %> </a></li>
+                    <h2><li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"></h2>Pokaż więcej informacji </a></li>
                     
                         <% }%>
                 </ol>
+                
             </jsp:useBean>
 
         </section>
