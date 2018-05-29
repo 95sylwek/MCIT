@@ -38,7 +38,7 @@
         
         <h4><% out.print(cos.getNazwa()); %></h4> 
         <p class="text-muted"><% out.print(cos.getOpis()); %></p>
-        <p ><% out.print(cos.getDataod()); %></p><br><br>
+        <p ><% out.print(lokalizacja.getDataOd(cos.getIdLokalizacja().toString())); %></p><br><br>
                <% }
                 }catch(Exception e){ out.print("pusta baza"); }%>
             </div>
