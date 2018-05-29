@@ -25,6 +25,7 @@ public class Wyloguj extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.setAttribute("id", null);
+        session.setAttribute("idStanowisko", null);
         response.sendRedirect("index.jsp");
 
     }

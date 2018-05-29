@@ -77,7 +77,7 @@
                 <h4>ROK ZAKOŃCZENIA:</h4> <p><% out.print(ek.getRokzak()); %></p>
                 
 
-                <% if (session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
+                <% if (session.getAttribute("idStanowisko") != "" && session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
                 <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
 
                 <form action="remove_ekspo" method="POST">
