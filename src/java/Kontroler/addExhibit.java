@@ -50,9 +50,9 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             Date data_do = df.parse(request.getParameter("rokzakpro"));
             String zdj = request.getParameter("zdj");
 
-            Part filePart = request.getPart("zdj");
+            //Part filePart = request.getPart("zdj");
 
-            InputStream inputStream = null;
+           // InputStream inputStream = null;
             
             //inputStream = filePart.getInputStream();
             
@@ -71,15 +71,15 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
 
             // obtains the upload file part in this multipart request
             
-            if (filePart != null) {
-                // prints out some information for debugging
-                System.out.println(filePart.getName());
-                String filepath = filePart.getName().toString();
-                inputStream = filePart.getInputStream();
-
-                // InputStream fileName = new FileInputStream(filePart);
-                //  File file =fileName.getPath();
-            }
+//            if (filePart != null) {
+//                // prints out some information for debugging
+//                System.out.println(filePart.getName());
+//                String filepath = filePart.getName().toString();
+//                inputStream = filePart.getInputStream();
+//
+//                // InputStream fileName = new FileInputStream(filePart);
+//                //  File file =fileName.getPath();
+//            }
 
             // String encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
             // System.out.println(encodedfile);
