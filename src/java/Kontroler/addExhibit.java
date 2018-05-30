@@ -34,28 +34,47 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             throws ServletException, IOException {
         response.setContentType("text/html");
 
+        
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
+       
         try {
             String nazwa = request.getParameter("nazwa");
+             System.out.println(nazwa+"nazwa");
             Lokalizacja lokalizacja = new Lokalizacja();
             String lok = request.getParameter("lokalizacja");
+            System.out.println(lok+"lok");
             Kategorie kategoria = new Kategorie();
             String kat = request.getParameter("kategoria");
+            System.out.println(kat+"kat");
             Producenci producent = new Producenci();
             String pro = request.getParameter("producenci");
+            System.out.println(pro+"pro");
 
             String opis = request.getParameter("opis");
+            System.out.println(opis+"opis");
             Date data_od = df.parse(request.getParameter("rokpow"));
+            System.out.println(data_od+"rok1");
             Date data_do = df.parse(request.getParameter("rokzakpro"));
-            String zdj = request.getParameter("zdj");
+            System.out.println(data_do+"rok2");
+            //String zdj = request.getParameter("zdj");
 
-            //Part filePart = request.getPart("zdj");
+            Part filePart = request.getPart("zdj");
+            
+           
 
-           // InputStream inputStream = null;
-            
-            //inputStream = filePart.getInputStream();
-            
+            InputStream inputStream = null;
+
+            inputStream = filePart.getInputStream();
+            int i;
+            byte c;
+            int j = 0;
+            byte[] b = new byte[(int) filePart.getSize()];
+            while ((i = inputStream.read()) != -1) {
+                c = (byte) i;
+                b[j] = c;
+            }
+            String zdj = Base64.encodeBase64String(b);
+        
             //byte[] filedata=ByteStreams.toByteArray(inputStream);
 
             // filePart.toString();
@@ -84,12 +103,13 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             // String encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
             // System.out.println(encodedfile);
             Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, zdj, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
+            response.sendRedirect("panel_add.jsp");
         } catch (Exception e) {
-            System.err.println(e.getMessage());
-            response.sendRedirect("error.jsp");
+            System.err.println(e.toString());
+            //response.sendRedirect("error.jsp");
         }
 
-        response.sendRedirect("panel_add.jsp");
+        
     }
 
     private static String encodeFileToBase64Binary(File file) {

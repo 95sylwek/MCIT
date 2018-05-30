@@ -178,12 +178,12 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="addExhibit"  method="POST" accept-charset="ISO-8859-1">
+                    <form class="form-horizontal" action="addExhibit"  method="POST" accept-charset="ISO-8859-1" enctype='multipart/form-data'>
 
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="imie">Nazwa:</label>
-                                <input type="text" class="form-control" name="nazwa" placeholder="Wpisz nazwe" required>
+                                <input type="text" id = "nazwa" class="form-control" name="nazwa" placeholder="Wpisz nazwe" required>
                             </div>
                         </div>
                         <div class="form-group">

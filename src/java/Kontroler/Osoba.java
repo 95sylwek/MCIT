@@ -404,6 +404,8 @@ public class Osoba {
         String password = "CosTam12";
         try {
             //  Osoba osoba = new Osoba("wolontariusz", "wolontariusz", "wolontariusz", "wolontariusz@wolontariusz.pl");
+            //Osoba osoba = new Osoba();
+            //osoba.edit("2", "", "", "", "", "kierownik", "kierownik@kierownik.pl", osoba.getStanowisko("2"));
 
         } catch (Exception e) {
         }
