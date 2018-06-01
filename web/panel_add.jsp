@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="addExhibit"  method="POST" accept-charset="ISO-8859-1" enctype='multipart/form-data'>
+                    <form class="form-horizontal" action="addExhibit"  method="POST" accept-charset="ISO-8859-1">
 
                         <div class="form-group">
                             <div class="col-sm-10">
@@ -247,9 +247,24 @@
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <label for="zdj">Wybierz plik zdjęcia:</label>
-                                <input type="file" class="form-control" name="zdj">
+                                <input id="inp" type='file'  class="form-control" >
+                                <input type="text"  id="b64" class="d-none" name="zdj">
+                                <img id="img" height="150">
                             </div>
                         </div>
+                        <script>
+                            function readFile() {
+                                if (this.files && this.files[0]) {
+                                    var FR = new FileReader();
+                                    FR.addEventListener("load", function (e) {
+                                        document.getElementById("img").src = e.target.result;
+                                        document.getElementById("b64").value = e.target.result;
+                                    });
+                                    FR.readAsDataURL(this.files[0]);
+                                }
+                            }
+                            document.getElementById("inp").addEventListener("change", readFile);
+                        </script>
 
                         <div class="form-group"> 
                             <div class="col-sm-offset-2 col-sm-10">

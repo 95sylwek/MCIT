@@ -87,6 +87,7 @@
                 <% } %>
 
 
+                <img src="<% out.print(eksponat.getZdj(sid)); %>" height="150" >
             </jsp:useBean>
                </center>
         </section>

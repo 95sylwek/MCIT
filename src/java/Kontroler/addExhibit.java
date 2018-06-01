@@ -32,14 +32,14 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
+        //response.setContentType("text/html");
 
         
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
        
         try {
             String nazwa = request.getParameter("nazwa");
-             System.out.println(nazwa+"nazwa");
+            System.out.println(nazwa+"nazwa");
             Lokalizacja lokalizacja = new Lokalizacja();
             String lok = request.getParameter("lokalizacja");
             System.out.println(lok+"lok");
@@ -56,77 +56,14 @@ public class addExhibit extends HttpServlet implements java.io.Serializable {
             System.out.println(data_od+"rok1");
             Date data_do = df.parse(request.getParameter("rokzakpro"));
             System.out.println(data_do+"rok2");
-            //String zdj = request.getParameter("zdj");
+            String zdj = request.getParameter("zdj");
+            System.out.println(zdj+"zdj");
 
-            Part filePart = request.getPart("zdj");
-            
-           
-
-            InputStream inputStream = null;
-
-            inputStream = filePart.getInputStream();
-            int i;
-            byte c;
-            int j = 0;
-            byte[] b = new byte[(int) filePart.getSize()];
-            while ((i = inputStream.read()) != -1) {
-                c = (byte) i;
-                b[j] = c;
-            }
-            String zdj = Base64.encodeBase64String(b);
-        
-            //byte[] filedata=ByteStreams.toByteArray(inputStream);
-
-            // filePart.toString();
-            // File f =  new File("c");
-            // String encodstring = encodeFileToBase64Binary(f);
-            //   System.out.println(encodstring);
-            // System.out.println(filePart);
-            // ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            // InputStream inputStream = null;
-            // Part filePart = request.getPart("zdj");
-            // inputStream = filePart.getInputStream();
-           
-
-            // obtains the upload file part in this multipart request
-            
-//            if (filePart != null) {
-//                // prints out some information for debugging
-//                System.out.println(filePart.getName());
-//                String filepath = filePart.getName().toString();
-//                inputStream = filePart.getInputStream();
-//
-//                // InputStream fileName = new FileInputStream(filePart);
-//                //  File file =fileName.getPath();
-//            }
-
-            // String encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
-            // System.out.println(encodedfile);
             Eksponat eksponat = new Eksponat(nazwa, opis, data_od, data_do, zdj, kategoria.getKategoria(kat), lokalizacja.getLoklaizacja(lok), producent.getProducent(pro));
             response.sendRedirect("panel_add.jsp");
         } catch (Exception e) {
             System.err.println(e.toString());
-            //response.sendRedirect("error.jsp");
-        }
-
-        
-    }
-
-    private static String encodeFileToBase64Binary(File file) {
-        String encodedfile = null;
-        try {
-            FileInputStream fileInputStreamReader = new FileInputStream(file);
-            byte[] bytes = new byte[(int) file.length()];
-            fileInputStreamReader.read(bytes);
-            encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return encodedfile;
+            response.sendRedirect("error.jsp");
+        }        
     }
 }
