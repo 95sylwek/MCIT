@@ -39,8 +39,11 @@
                 Menu
                 <i class="fa fa-bars"></i>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                
                 <ul class="navbar-nav text-uppercase ml-auto">
+                    
 
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#services">Wydarzenia</a>
@@ -67,9 +70,10 @@
                         </li>
                         <% }%>
                     </jsp:useBean>
-                    <div class="search-container">
-                    </div>
+                        
+                    
                 </ul>
+                    
             </div>
         </div>
     </nav>

@@ -22,6 +22,11 @@
 
         <!-- Custom styles for this template -->
         <link href="css/agency.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/lightbox.min.css">
+        
+        <script type="text/javascript" src="js/lightbox-plus-jquery.min.js"> 
+        </script>
+        
 
     </head>
 
@@ -73,8 +78,8 @@
                 <h4>KATEGORIA:</h4> <p><% out.print(ek.getKategoria().getNazwa()); %></p><br>
                 <h4>PRODUCENT:</h4> <p><% out.print(ek.getPooducent().getNazwa()); %></p><br>
                 <h4>OPIS:</h4> <p><% out.print(ek.getOpis()); %></p><br>
-                <h4>ROK POWSTANIA:</h4> <p><% out.print(ek.getRokpow()); %></p><br>
-                <h4>ROK ZAKOŃCZENIA:</h4> <p><% out.print(ek.getRokzak()); %></p>
+                <h4>ROK POWSTANIA:</h4> <p><% out.print(eksponat.getRokPow(ek.getIdEksponat().toString())); %></p><br>
+                <h4>ROK ZAKOŃCZENIA PRODUKCJI:</h4> <p><% out.print(eksponat.getRokZak(ek.getIdEksponat().toString())); %></p>
                 
 
                 <% if (session.getAttribute("idStanowisko") != "" && session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
@@ -86,9 +91,11 @@
                 </form>
                 <% } %>
 
-
-                <img src="<% out.print(eksponat.getZdj(sid)); %>" height="150" >
+                <div class="images">
+                     <a href="<% out.print(eksponat.getZdj(sid)); %>" data-lightbox="Eksponat"><img src="<% out.print(eksponat.getZdj(sid)); %>"></a>
+                
             </jsp:useBean>
+                </div>
                </center>
         </section>
 

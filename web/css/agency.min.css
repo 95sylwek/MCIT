@@ -4,3 +4,19 @@ body{overflow-x:hidden;font-family:'Roboto Slab','Helvetica Neue',Helvetica,Aria
     width: 150px;
     height: 25px;
 }
+
+.images{
+    margin: 10px 50px;
+}
+.images img{
+    width: 230px;
+    padding: 5px;
+    filter: grayscale(100%);
+    transition: 1s;
+}
+.images img:hover{
+    filter:grayscale(0);
+    transform: scale(1.1);
+}
+
+
