@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -324,8 +325,26 @@ public class Eksponat {
         em.getTransaction().commit();
         em.close();
     }
+    public List<Model.Eksponaty>  search (String tekst){
+        String test = "%"+tekst.toLowerCase()+"%";
+        
+        System.err.println(test);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DbName);
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        
+        TypedQuery<Model.Eksponaty> q = em.createQuery("SELECT e FROM Eksponaty e WHERE LOWER(e.nazwa) LIKE  :tekst OR LOWER(e.opis) LIKE  :tekst", Model.Eksponaty.class);        
+        List eksponaty = (List) q.setParameter("tekst", test).getResultList();
+        
+        em.getTransaction().commit();
+        em.close();
+        return eksponaty;
+    }
 
     public static void main(String[] args) {
-
+        Eksponat ek = new Eksponat();
+        
+        for(Model.Eksponaty row : ek.search("niezniszczalna"))
+            System.out.println(row.getNazwa()+"\n"+row.getOpis());
     }
 }
