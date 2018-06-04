@@ -1,21 +1,13 @@
-<!DOCTYPE html>
+<%@page import="Model.Kategorie"%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="Kontroler.Logowania"%>
-<%
-    if ((session.getAttribute("id") == null) || (session.getAttribute("id") == "0")) {
-        response.sendRedirect("index.jsp");
-    } else {
-%>
-<html lang="en">
 
-
+<!DOCTYPE html>
+<html lang="pl">
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
         <title>Panel Dodawania </title>
 
         <!-- Bootstrap core CSS -->
@@ -44,64 +36,47 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
+                    <ul class="navbar-nav text-uppercase ml-auto">                       
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="panel_add.jsp">Dodaj</a>
+                            <a class="nav-link js-scroll-trigger" href="all_ekspo.jsp">Wróć</a>  
                         </li>
-                        <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="all_ekspo.jsp">Edycja/usuń</a>
-                        </li>
-                        <% } %>
-                        <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
-                        </li>
-                        <jsp:useBean id="user" class="Kontroler.Osoba" scope="request">
-                        <% String cos2 = session.getAttribute("id").toString(); %>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger"><%out.print(user.getImie(cos2)); %></a>  
-                        </li>
-                       
-                    </jsp:useBean>
-                       
-                        <li class="nav-item">
-                  <form action="Wyloguj" method="post">
-                <button type="submit" formaction="Wyloguj" class="btn btn-primary"  data-target=".bd-example-modal-sm">Wyloguj</button>
-                </form>
-                        </li>
-
-
-
-
                         <div class="search-container">
-
                         </div>
                     </ul>
-
-
                 </div>
             </div>
-
         </nav>
 
         <!-- Header -->
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Panel Administratora</div>
-                    
-                   
-                   
+                    <div class="intro-lead-in">Eksponaty</div>
                 </div>
             </div>
         </header>
 
 
+        <section>
+            <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="page">
 
+                
+                <ol>
+                    <% String sid = request.getParameter("id");
+                        for (Model.Eksponaty row : lokalizacja.getLoklaizacja(sid).getEksponatyCollection()) {
+                            
+                    %>     
 
+                    <h2><li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"></h2>Pokaż więcej informacji </a></li>
+                    
+                        <% }%>
+                </ol>
+                
+            </jsp:useBean>
 
+        </section>
 
+        <%@include file="footer.jsp" %>
 
-<%@include file="footer.jsp" %>
-<%}%>
+        
+        
