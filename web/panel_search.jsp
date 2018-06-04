@@ -1,4 +1,4 @@
-<%@page import="Model.Kategorie"%>
+<%@page import="Model.Eksponaty"%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Panel eksponatu </title>
+        <title>Panel wyszukiwania </title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,12 +58,12 @@
 
 
         <section>
-            <jsp:useBean id="kategoria" class="Kontroler.Kategorie" scope="page">
+            <jsp:useBean id="eksponat" class="Kontroler.Eksponat" scope="page">
 
                 
                 <ol>
-                    <% String sid = request.getParameter("id");
-                        for (Model.Eksponaty row : kategoria.getKategoria(sid).getEksponatyCollection()) {
+                    <% String tekst = request.getParameter("search");
+                        for (Model.Eksponaty row : eksponat.search(tekst) ) {
                             
                     %>     
 

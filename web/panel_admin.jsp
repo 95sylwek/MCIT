@@ -16,7 +16,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Panel Dodawania </title>
+        <title>Panel administratora </title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,6 +46,14 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item">
+
+                            <form action="panel_search.jsp" method="GET" style=" margin-top: 10px ">
+                                <input type="text" placeholder="Wyszukaj..." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="panel_add.jsp">Dodaj</a>
                         </li>
                         <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
@@ -58,17 +66,17 @@
                             <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
                         </li>
                         <jsp:useBean id="user" class="Kontroler.Osoba" scope="request">
-                        <% String cos2 = session.getAttribute("id").toString(); %>
+                            <% String cos2 = session.getAttribute("id").toString(); %>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger"><%out.print(user.getImie(cos2)); %></a>  
+                            </li>
+
+                        </jsp:useBean>
+
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger"><%out.print(user.getImie(cos2)); %></a>  
-                        </li>
-                       
-                    </jsp:useBean>
-                       
-                        <li class="nav-item">
-                  <form action="Wyloguj" method="post">
-                <button type="submit" formaction="Wyloguj" class="btn btn-primary"  data-target=".bd-example-modal-sm">Wyloguj</button>
-                </form>
+                            <form action="Wyloguj" method="post">
+                                <button type="submit" formaction="Wyloguj" class="btn btn-primary"  data-target=".bd-example-modal-sm">Wyloguj</button>
+                            </form>
                         </li>
 
 
@@ -90,9 +98,9 @@
             <div class="container">
                 <div class="intro-text">
                     <div class="intro-lead-in">Panel Administratora</div>
-                    
-                   
-                   
+
+
+
                 </div>
             </div>
         </header>
@@ -103,5 +111,5 @@
 
 
 
-<%@include file="footer.jsp" %>
-<%}%>
+        <%@include file="footer.jsp" %>
+        <%}%>

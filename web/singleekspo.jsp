@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Panel Dodawania </title>
+        <title>Eksponat </title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +83,7 @@
                 
 
                 <% if (session.getAttribute("idStanowisko") != "" && session.getAttribute("idStanowisko") != null && session.getAttribute("idStanowisko").equals(2)) { %>
-                <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>">Edytuj </a>
+                <a href=" panel_edycja_ekspo.jsp?id=<% out.print(ek.getIdEksponat()); %>" class="btn btn-default">Edytuj </a>
 
                 <form action="remove_ekspo" method="POST">
                     <input class="d-none" type="text" name="remove_ekspo" value="<% out.print(ek.getIdEksponat());%>" />

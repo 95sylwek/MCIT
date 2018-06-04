@@ -21,7 +21,7 @@
 
     <!-- Wydarzenia -->
             
-    <section class="bg-light" id="portfolio">
+    <section class="bg-light" id="services">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">

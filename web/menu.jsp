@@ -39,11 +39,20 @@
                 Menu
                 <i class="fa fa-bars"></i>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                
+
                 <ul class="navbar-nav text-uppercase ml-auto">
-                    
+
+                    <li class="nav-item">
+
+                        <form action="panel_search.jsp" method="GET" style=" margin-top: 10px ">
+                            <input type="text" placeholder="Wyszukaj..." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+
+                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#services">Wydarzenia</a>
@@ -70,10 +79,10 @@
                         </li>
                         <% }%>
                     </jsp:useBean>
-                        
-                    
+
+
                 </ul>
-                    
+
             </div>
         </div>
     </nav>

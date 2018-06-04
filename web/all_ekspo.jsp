@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Panel Dodawania </title>
+        <title>Panel edytuj/usuń </title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,27 +48,27 @@
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <% if (session.getAttribute("idStanowisko").equals(1) || session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#uzytkownik">Edytuj użytkownika</a>
+                            <a class="nav-link js-scroll-trigger" href="#uzytkownik">Edytuj/Usuń użytkownika</a>
                         </li>
                         <% } %>
                         <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#eksponat">Edytuj eksponat</a>
+                            <a class="nav-link js-scroll-trigger" href="#eksponat">Edytuj/Usuń eksponat</a>
                         </li>
                         <% } %>
                         <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#producent">Edytuj producenta</a>
+                            <a class="nav-link js-scroll-trigger" href="#producent">Edytuj/Usuń producenta</a>
                         </li>
                         <% } %>
                         <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#lokalizacja">Edytuj lokalizacje</a>
+                            <a class="nav-link js-scroll-trigger" href="#lokalizacja">Edytuj/Usuń lokalizacje</a>
                         </li>
                         <% } %>
                         <% if (session.getAttribute("idStanowisko").equals(2)) { %>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#kategoria">Edytuj kategorie</a>
+                            <a class="nav-link js-scroll-trigger" href="#kategoria">Edytuj/Usuń kategorie</a>
                         </li>
                         <% } %>
                         <li class="nav-item">
