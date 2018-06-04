@@ -55,10 +55,10 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#services">Wydarzenia</a>
+                        <a class="nav-link js-scroll-trigger" href="#wydarzenia">Wydarzenia</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio">Kategorie</a>
+                        <a class="nav-link js-scroll-trigger" href="#kategorie">Kategorie</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#about">O nas</a>

@@ -20,8 +20,8 @@
     </header>
 
     <!-- Wydarzenia -->
-            
-    <section class="bg-light" id="services">
+    <div id="wydarzenia">
+    <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -56,8 +56,10 @@
 
       </div>
     </section>
+    </div> 
 
     <!-- Kategorie -->
+    <div id="kategorie">
     <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row">
@@ -93,6 +95,7 @@
 
       </div>
     </section>
+    </div>
 
     <!-- About -->
     <section id="about">
