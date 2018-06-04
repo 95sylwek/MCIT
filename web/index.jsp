@@ -12,7 +12,7 @@
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">Muzeum Historii Komputerów i Informatyki</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Wydarzenia</a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#wydarzenia">Wydarzenia</a>
           
           
         </div>
