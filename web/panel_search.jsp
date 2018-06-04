@@ -63,13 +63,16 @@
                 
                 <ol>
                     <% String tekst = request.getParameter("search");
+                    if(!eksponat.search(tekst).isEmpty()){
                         for (Model.Eksponaty row : eksponat.search(tekst) ) {
                             
                     %>     
 
                     <h2><li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"></h2>Pokaż więcej informacji </a></li>
                     
-                        <% }%>
+                        <% } } else {%>
+                        <h2>Nie znaleziono eksponatów</h2>
+                        <% } %>
                 </ol>
                 
             </jsp:useBean>
