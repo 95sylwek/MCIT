@@ -141,12 +141,15 @@
                             <div class="col-sm-10"> 
                                 <label for="stanowiako">Stanowisko:</label>                                
                                 <select name="stanowisko" class="form-control"  >
+                                    <jsp:useBean id="user" class="Kontroler.Osoba" scope="request">    
                                     <jsp:useBean id="stanowisko" class="Kontroler.Stanowisko" scope="request">
                                         <option value="">Wybierz stanowisko</option>
-                                        <% for (Model.Stanowisko cos : stanowisko.getStanowiska()) { %>
+                                        <% for (Model.Stanowisko cos : stanowisko.getStanowiska()) {
+                                            if(cos.getIdStanowisko() >= user.getStanowisko(session.getAttribute("id").toString()).getIdStanowisko()){ %>
                                         <option value="<% out.print(cos.getIdStanowisko()); %>"><% out.print(cos.getNazwa());%> </option>
-                                        <% } %>
+                                        <%} } %>
                                     </jsp:useBean>
+                                        </jsp:useBean>
                                 </select>
                             </div>
                         </div>

@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="edit_producenta" method="post">
+                    <form class="form-horizontal" action="edit_producenta" method="post" accept-charset="ISO-8859-1">
                         <jsp:useBean id="producent" class="Kontroler.Producenci" scope="request">                           
                             <% String sid = request.getParameter("id");
                                 int az = Integer.parseInt(sid);

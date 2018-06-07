@@ -39,7 +39,8 @@ public class edit_user extends HttpServlet implements java.io.Serializable{
         
         try{
             Osoba osoba=new Osoba();
-            osoba.edit(id, imie, nazwisko, adres, telefon, email, email, stanowisko.getStanowisko(request.getParameter("stanowisko")));
+            osoba.edit(id, imie, nazwisko, adres, telefon, password, email, stanowisko.getStanowisko(request.getParameter("stanowisko")));
+          
             response.sendRedirect("all_ekspo.jsp");
             
         }catch(Exception e){

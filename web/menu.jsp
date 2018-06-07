@@ -46,7 +46,7 @@
 
                     <li class="nav-item">
 
-                        <form action="panel_search.jsp" method="GET" style=" margin-top: 10px ">
+                        <form action="panel_search.jsp" method="GET" class="mt-2"  accept-charset="ISO-8859-1">
                             <input type="text" placeholder="Wyszukaj..." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>

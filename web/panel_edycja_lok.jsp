@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="edit_lokalizacji" method="post">
+                    <form class="form-horizontal" action="edit_lokalizacji" method="post" accept-charset="ISO-8859-1">
                         <jsp:useBean id="lokalizacja" class="Kontroler.Lokalizacja" scope="request">                           
                             <% String sid = request.getParameter("id"); 
                         

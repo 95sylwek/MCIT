@@ -113,7 +113,7 @@
                         <div class="col-md-4 col-sm-6 portfolio-item">   
                             <center>
 
-                                    <a ><% out.print(cos.getImie()); %></a>
+                                    <a ><% out.print(cos.getImie()+" "+cos.getNazwisko()); %></a>
 
                              
                                    <form action="show_edit" method="POST">

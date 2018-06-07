@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 <div class="col-sm-10"> 
                                     <label for="pwd">Hasło:</label>
-                                    <input type="password" class="form-control" name="pass" value="<% out.print(user.getOsoba(id).getHaslo()); %>">
+                                    <input type="password" class="form-control" name="pass" value="">
                                 </div>
                             </div>
 
@@ -122,8 +122,9 @@
                                         <jsp:useBean id="stanowisko" class="Kontroler.Stanowisko" scope="request">
                                             <option value="<% out.print(user.getStanowisko(id).getIdStanowisko()); %>"><% out.print(user.getStanowisko(id).getNazwa()); %></option>
                                             <% for (Model.Stanowisko cos : stanowisko.getStanowiska()) {
-                                                    if (cos.getIdStanowisko() != user.getStanowisko(id).getIdStanowisko()) {
-                                            %>                                            
+                                                    if (cos.getIdStanowisko() != user.getStanowisko(id).getIdStanowisko() && cos.getIdStanowisko()>=user.getStanowisko(session.getAttribute("id").toString()).getIdStanowisko()) {
+                                            %>      
+                                           
                                             <option value="<% out.print(cos.getIdStanowisko()); %>"><% out.print(cos.getNazwa());%> </option>
                                             <% }
                                                 }%>

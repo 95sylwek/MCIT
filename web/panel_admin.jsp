@@ -71,7 +71,7 @@
                                 <a class="nav-link js-scroll-trigger"><%out.print(user.getImie(cos2)); %></a>  
                             </li>
 
-                        </jsp:useBean>
+                        
 
                         <li class="nav-item">
                             <form action="Wyloguj" method="post">
@@ -97,9 +97,11 @@
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Panel Administratora</div>
+                    <div class="intro-lead-in"><%out.print("Jesteś zalogowany jako: "+user.getImie(cos2)+" "+user.getNazwisko(cos2));%><br><br>
+                        <%out.print("Uprawnienia: " +user.getStanowisko(cos2).getNazwa());  %>
+                    </div>
 
-
+</jsp:useBean>
 
                 </div>
             </div>
