@@ -67,7 +67,7 @@
                             
                     %>     
 
-                    <h2><li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"></h2>Pokaż więcej informacji </a></li>
+                    <h5><li><% out.print(row.getNazwa()); %>  <a href=" singleekspo.jsp?id=<% out.print(row.getIdEksponat()); %>"></h5>Pokaż więcej informacji </a></li>
                     
                         <% }%>
                 </ol>
